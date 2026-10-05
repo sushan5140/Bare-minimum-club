@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#fff7f8" />
+  <title>Bare Minimum Club</title>
+  <meta name="description" content="A tiny stupid corner of the internet for rough days." />
+  <style>
+    :root{
+      --bg:#fff8f8;
+      --paper:#fffdfd;
+      --ink:#241f20;
+      --muted:#746a6d;
+      --line:#eadfe2;
+      --accent:#ff7f9f;
+      --accent2:#ffd2dc;
+      --shadow:0 22px 70px rgba(76,47,57,.11);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 15% 10%,#ffe7ed 0,transparent 31%),
+        radial-gradient(circle at 87% 18%,#fff1c9 0,transparent 28%),
+        linear-gradient(180deg,#fffafa 0%,#fff6f7 100%);
+    }
+    button,input{font:inherit}
+    .shell{width:min(1100px,92vw);margin:auto;padding:26px 0 60px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:36px}
+    .brand{font-weight:900;letter-spacing:-.04em;font-size:1.05rem}
+    .tiny{font-size:.82rem;color:var(--muted)}
+    .pill{
+      border:1px solid var(--line);background:rgba(255,255,255,.7);
+      backdrop-filter:blur(12px);border-radius:999px;padding:10px 14px;color:var(--muted)
+    }
+    .hero{
+      display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:stretch
+    }
+    .panel{
+      background:rgba(255,255,255,.78);border:1px solid rgba(234,223,226,.85);
+      border-radius:var(--radius);box-shadow:var(--shadow);padding:34px;
+      backdrop-filter:blur(16px)
+    }
+    h1{
+      margin:0;font-size:clamp(3rem,8vw,6.8rem);line-height:.88;
+      letter-spacing:-.075em;font-weight:900;max-width:780px
+    }
+    .sub{
+      margin:22px 0 0;max-width:650px;color:var(--muted);
+      font-size:clamp(1rem,2vw,1.25rem);line-height:1.6
+    }
+    .prompt{font-size:1.1rem;font-weight:800;margin:0 0 16px}
+    .moods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .mood{
+      min-height:88px;border:1px solid var(--line);border-radius:20px;background:var(--paper);
+      text-align:left;padding:16px;cursor:pointer;transition:.18s ease;font-weight:750
+    }
+    .mood:hover{transform:translateY(-2px);border-color:#d9c9ce;box-shadow:0 10px 28px rgba(65,41,49,.08)}
+    .mood span{display:block;font-size:1.45rem;margin-bottom:7px}
+    .mood small{font-weight:600;color:var(--muted)}
+    .note{margin-top:18px;padding:14px 16px;border-radius:18px;background:#fff3f5;color:#6f5158;font-size:.9rem}
+    .experience{display:none;margin-top:24px}
+    .experience.active{display:block}
+    .stage-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}
+    .stage-title{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:900;letter-spacing:-.05em}
+    .reset{
+      border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;cursor:pointer
+    }
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .card{
+      min-height:180px;border:1px solid var(--line);border-radius:22px;background:#fff;padding:20px;
+      display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:.18s ease
+    }
+    .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(76,47,57,.09)}
+    .card .emoji{font-size:2rem}
+    .card h3{margin:12px 0 7px;font-size:1.12rem}
+    .card p{margin:0;color:var(--muted);line-height:1.45;font-size:.92rem}
+    .playground{
+      margin-top:18px;min-height:220px;border:1px dashed #dccdd2;border-radius:22px;
+      background:linear-gradient(145deg,#fff,#fff6f8);display:flex;align-items:center;
+      justify-content:center;padding:28px;text-align:center;position:relative;overflow:hidden
+    }
+    .big-action{
+      border:0;border-radius:999px;background:var(--ink);color:#fff;padding:16px 22px;
+      font-weight:850;cursor:pointer;box-shadow:0 12px 30px rgba(36,31,32,.16)
+    }
+    .footer{
+      margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.83rem
+    }
+    @media(max-width:820px){
+      .hero{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .panel{padding:24px}
+    }
+    @media(max-width:560px){
+      .moods,.cards{grid-template-columns:1fr}
+      .topbar{align-items:flex-start}
+      h1{font-size:3.55rem}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">bare minimum club</div>
+      <div class="pill tiny">no fixing. just surviving the vibe.</div>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="panel">
+        <h1>rough day?<br>come waste 3 minutes here.</h1>
+        <p class="sub">
+          No productivity speech. No “be your best self.” Pick what your brain can tolerate and we’ll do the bare minimum together.
+        </p>
+      </div>
+
+      <div class="panel">
+        <p class="prompt">today’s vibe?</p>
+        <div class="moods">
+          <button class="mood" data-mode="rage"><span>😡</span>everyone is annoying<small>outsource violence to pixels</small></button>
+          <button class="mood" data-mode="soft"><span>🥲</span>emotional for no reason<small>zero judgement zone</small></button>
+          <button class="mood" data-mode="blank"><span>😴</span>don’t make me think<small>brain-off interactions only</small></button>
+          <button class="mood" data-mode="panic"><span>😭</span>distract me NOW<small>stupid little side quests</small></button>
+          <button class="mood" data-mode="meh"><span>😐</span>existing.<small>bare minimum acknowledged</small></button>
+          <button class="mood" data-mode="space"><span>🫥</span>leave me alone nicely<small>company without company</small></button>
+        </div>
+        <div class="note">This is a distraction/comfort space, not medical advice or cycle tracking.</div>
+      </div>
+    </section>
+
+    <section class="experience panel" id="experience">
+      <div class="stage-head">
+        <div>
+          <div class="tiny" id="modeLabel">mode selected</div>
+          <div class="stage-title" id="modeTitle">okay. we got you.</div>
+        </div>
+        <button class="reset" id="resetBtn">change vibe</button>
+      </div>
+
+      <div class="cards" id="cards"></div>
+      <div class="playground" id="playground">
+        <div>
+          <div style="font-size:2.2rem;margin-bottom:10px">🛋️</div>
+          <strong>pick a tiny distraction above</strong>
+          <p class="tiny">nothing here is trying to improve you.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>v0.1 · distraction first</span>
+      <span>made for bad days, monthly boss battles, and absolutely no motivational speeches</span>
+    </footer>
+  </main>
+
+  <script>
+    const modes = {
+      rage: {
+        title: "understood. violence has been outsourced to pixels.",
+        label: "RAGE MODE",
+        cards: [
+          ["💥","destroy something","smash a completely innocent object"],
+          ["🗑️","throw it away","type what annoyed you and launch it"],
+          ["🦟","pick a victim","fight something harmless and stupid"]
+        ]
+      },
+      soft: {
+        title: "no motivational speech. promise.",
+        label: "SOFT MODE",
+        cards: [
+          ["💌","tiny nice thing","receive one low-effort compliment"],
+          ["🫶","comfort card","a gentle message with no advice"],
+          ["🎲","random softness","let the site pick something small"]
+        ]
+      },
+      blank: {
+        title: "brain privileges temporarily suspended.",
+        label: "NO THOUGHTS MODE",
+        cards: [
+          ["🫧","pop bubbles","that’s the whole assignment"],
+          ["🪩","move the blob","drag something around for no reason"],
+          ["🌙","do literally nothing","a screen that asks nothing from you"]
+        ]
+      },
+      panic: {
+        title: "okay okay. emergency nonsense deployed.",
+        label: "DISTRACT ME NOW",
+        cards: [
+          ["🎯","30-sec side quest","tiny pointless challenge"],
+          ["🎭","give me drama","absurd interactive micro-story"],
+          ["🌀","chaos button","press it and regret having free will"]
+        ]
+      },
+      meh: {
+        title: "existing counts. unfortunately.",
+        label: "BARE MINIMUM MODE",
+        cards: [
+          ["🥔","potato rank","identify your emotional potato"],
+          ["🪑","chair lore","rate your current sitting situation"],
+          ["🧃","tiny reward","earn a deeply meaningless badge"]
+        ]
+      },
+      space: {
+        title: "understood. we’ll sit over here.",
+        label: "SPACE MODE",
+        cards: [
+          ["🌫️","quiet screen","nothing moves unless you want it to"],
+          ["📦","leave a note","dump one thought and close the box"],
+          ["🕯️","check back later","a tiny neutral reset, no questions"]
+        ]
+      }
+    };
+
+    const experience = document.getElementById("experience");
+    const cards = document.getElementById("cards");
+    const playground = document.getElementById("playground");
+    const modeTitle = document.getElementById("modeTitle");
+    const modeLabel = document.getElementById("modeLabel");
+
+    document.querySelectorAll(".mood").forEach(btn=>{
+      btn.addEventListener("click",()=>openMode(btn.dataset.mode));
+    });
+
+    document.getElementById("resetBtn").addEventListener("click",()=>{
+      experience.classList.remove("active");
+      document.getElementById("home").scrollIntoView({behavior:"smooth"});
+    });
+
+    function openMode(key){
+      const mode = modes[key];
+      modeTitle.textContent = mode.title;
+      modeLabel.textContent = mode.label;
+      cards.innerHTML = "";
+      mode.cards.forEach((item,i)=>{
+        const el = document.createElement("button");
+        el.className = "card";
+        el.innerHTML = '<div><div class="emoji">'+item[0]+'</div><h3>'+item[1]+'</h3><p>'+item[2]+'</p></div><div class="tiny">open →</div>';
+        el.addEventListener("click",()=>runMini(key,i,item[1]));
+        cards.appendChild(el);
+      });
+      experience.classList.add("active");
+      experience.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+
+    function runMini(mode,index,name){
+      if(name.includes("destroy")){
+        playground.innerHTML = '<div><div id="smashTarget" style="font-size:5rem;cursor:pointer;user-select:none">☕</div><p><strong>this mug did nothing wrong.</strong><br><span class="tiny">tap it anyway.</span></p></div>';
+        let hits=0;
+        document.getElementById("smashTarget").onclick = e=>{
+          hits++;
+          e.currentTarget.style.transform='rotate('+(hits*19)+'deg) scale('+(1-Math.min(hits*.05,.35))+')';
+          if(hits>=7) playground.innerHTML='<div><div style="font-size:4rem">💥</div><strong>excellent. conflict resolved professionally.</strong></div>';
+        };
+      } else if(name.includes("pop")){
+        playground.innerHTML = '<div id="bubbleField" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:520px"></div>';
+        const field=document.getElementById("bubbleField");
+        for(let i=0;i<18;i++){
+          const b=document.createElement("button");
+          b.textContent="🫧";
+          b.style.cssText="font-size:2rem;border:0;background:transparent;cursor:pointer";
+          b.onclick=()=>{b.textContent="·";b.disabled=true};
+          field.appendChild(b);
+        }
+      } else if(name.includes("note")){
+        playground.innerHTML = '<div style="width:min(520px,100%)"><p><strong>put it here. no reply required.</strong></p><input id="noteInput" placeholder="today was..." style="width:100%;padding:15px 17px;border:1px solid var(--line);border-radius:16px;background:#fff"><br><br><button class="big-action" id="sealNote">close the box</button></div>';
+        document.getElementById("sealNote").onclick=()=>playground.innerHTML='<div><div style="font-size:3rem">📦</div><strong>boxed. you do not have to solve it right now.</strong></div>';
+      } else if(name.includes("chaos")){
+        playground.innerHTML = '<button class="big-action" id="chaosBtn">DO NOT PRESS AGAIN</button>';
+        const lines=["that was the warning.","interesting decision.","free will was a mistake.","again???","bro.","okay now the button is judging you."];
+        let n=0;
+        document.getElementById("chaosBtn").onclick=e=>{e.currentTarget.textContent=lines[Math.min(n++,lines.length-1)]};
+      } else if(name.includes("compliment") || name.includes("nice")){
+        const lines=["you made it through today so far. statistically impressive.","you are allowed to be low battery and still lovable.","you do not need to perform being okay.","tiny win: you opened this instead of fighting the ceiling."];
+        playground.innerHTML='<div><div style="font-size:3rem">💌</div><strong>'+lines[Math.floor(Math.random()*lines.length)]+'</strong></div>';
+      } else {
+        const fillers=[
+          "achievement unlocked: did one tiny thing",
+          "side quest complete. main quest remains none of our business.",
+          "you interacted with a rectangle. proud of you.",
+          "no lesson. no growth arc. just vibes.",
+          "valid. unfortunately."
+        ];
+        playground.innerHTML='<div><div style="font-size:3rem">✨</div><strong>'+fillers[Math.floor(Math.random()*fillers.length)]+'</strong><p class="tiny">'+name+'</p></div>';
+      }
+    }
+  </script>
+</body>
+</html>
