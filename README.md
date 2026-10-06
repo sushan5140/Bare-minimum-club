@@ -61,6 +61,18 @@ Implemented:
 - a tiny season summary based on recurring arc
 - no streaks, points, XP, or productivity pressure
 
+### Batch 3: One More Person × You Had To Be There
+
+Development branch: `feature/bmc-batch-3-one-more-person`
+
+Implemented:
+- quiet-presence modes instead of a chatbot
+- "sit here / fake study / keep me company / say something dumb" companion states
+- a tiny memory drawer for low-stakes moments
+- random resurfacing of older moments
+- local-only browser storage
+- no feeds, likes, followers, or social pressure
+
 The default `main` branch remains untouched until review.
 
 ## v0.1
