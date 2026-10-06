@@ -136,7 +136,6 @@
     }
     @media(max-width:560px){
       .moods,.cards,.feature-grid,.regret-types{grid-template-columns:1fr}
-      .verdicts{grid-template-columns:1fr}
       .topbar,.feature-head{align-items:flex-start;flex-direction:column}
       h1{font-size:3.55rem}
       .sheet{padding:10px}
@@ -223,10 +222,9 @@
           <button class="sheet-close" data-close="minimumSheet">✕</button>
         </div>
         <div class="choice-row" id="batteryChoices">
-          <button class="chip active" data-level="0">0% · horizontal</button>
-          <button class="chip" data-level="1">20% · barely online</button>
-          <button class="chip" data-level="2">40% · can negotiate</button>
-          <button class="chip" data-level="3">60% · suspiciously functional</button>
+          <button class="chip active" data-level="0">dead</button>
+          <button class="chip" data-level="1">barely functioning</button>
+          <button class="chip" data-level="2">I can do one thing</button>
         </div>
         <button class="big-action" id="minimumBtn">give me the bare minimum</button>
         <div class="result-box" id="minimumResult"><span class="tiny">Your assignment will be aggressively achievable.</span></div>
@@ -246,13 +244,8 @@
           <button class="regret-type" data-type="said">🗣️ said something</button>
           <button class="regret-type" data-type="other">🫠 other disaster</button>
         </div>
-        <button class="big-action" id="assessBtn">ASSESS THE DAMAGE</button>
+        <button class="big-action" id="assessBtn">okay tell me how bad</button>
         <div class="result-box" id="regretResult"><span class="tiny">No lectures. The decision has already left the building.</span></div>
-        <div class="verdicts" id="verdicts" style="display:none">
-          <div class="verdict">COOKED<br><span id="cookedPct">—</span></div>
-          <div class="verdict">LET HER COOK<br><span id="cookPct">—</span></div>
-          <div class="verdict">HISTORIC MOVE<br><span id="historicPct">—</span></div>
-        </div>
       </div>
     </div>
 
@@ -369,40 +362,34 @@
         "do the smallest visible part of the task you've been avoiding, then leave.",
         "make your bed badly. corners are capitalist propaganda.",
         "walk around for four minutes and return dramatically."
-      ],
-      3:[
-        "do one 10-minute life-maintenance task, then immediately cash out.",
-        "prep one thing that tomorrow-you will notice and appreciate.",
-        "clear one tiny surface. do not accidentally clean the whole room.",
-        "send the message you've been rehearsing in your head, if it's safe to send."
       ]
     };
 
     const regretLines = {
       text:[
-        "message has entered the atmosphere. staring at 'delivered' will not improve the weather.",
-        "the text exists now. dignity remains approximately intact.",
-        "official advice: do NOT send the follow-up explaining the first message."
+        ["COOKED BUT RECOVERABLE","message has entered the atmosphere. do not send the follow-up explaining the first message. disappear for 17 minutes."],
+        ["LET HER COOK","the text exists now. dignity remains approximately intact. put the phone face-down."],
+        ["HISTORIC MOVE","bold. irreversible. possibly iconic. absolutely no second paragraph."]
       ],
       post:[
-        "the story is live. everyone is probably much less focused on it than your brain claims.",
-        "posted. civilization continues.",
-        "you are currently experiencing post-post clarity."
+        ["COOKED BUT RECOVERABLE","the post is live. everyone is thinking about it less than your brain says they are."],
+        ["LET HER COOK","post-post clarity is real. leave it alone for ten minutes before touching archive."],
+        ["HISTORIC MOVE","you posted it. stand by the vision or go make tea. both are respectable."]
       ],
       buy:[
-        "financial character development detected.",
-        "purchase complete. we will call it a plot device until the return window closes.",
-        "bank account has seen worse. probably."
+        ["COOKED BUT RECOVERABLE","financial character development detected. check the return window tomorrow, not while panicking."],
+        ["LET HER COOK","purchase complete. if it makes you happy and rent still exists, we continue."],
+        ["HISTORIC MOVE","bank account took emotional damage. the plot, however, has advanced."]
       ],
       said:[
-        "sentence cannot be recalled from production.",
-        "congratulations, you have discovered verbal send-without-undo.",
-        "there is a strong chance everyone else already moved on while you're replaying it in 4K."
+        ["COOKED BUT RECOVERABLE","sentence cannot be recalled from production. resist the urge to explain it into a bigger sentence."],
+        ["LET HER COOK","everyone else may have already moved on while you're replaying it in 4K."],
+        ["HISTORIC MOVE","verbal send-without-undo. terrifying technology. we move."]
       ],
       other:[
-        "the council has classified this as: we'll survive.",
-        "interesting. deeply interesting decision.",
-        "event logged under 'seemed reasonable at the time.'"
+        ["COOKED BUT RECOVERABLE","the council has classified this as survivable. no emergency sequel required."],
+        ["LET HER COOK","deeply interesting decision. give reality a minute to respond before doing anything else."],
+        ["HISTORIC MOVE","event logged under 'seemed reasonable at the time.' honestly, respect."]
       ]
     };
 
@@ -446,15 +433,8 @@
     });
     document.getElementById("assessBtn").onclick=()=>{
       const lines=regretLines[regretType];
-      const line=lines[Math.floor(Math.random()*lines.length)];
-      const cooked=Math.floor(18+Math.random()*43);
-      const historic=Math.floor(8+Math.random()*24);
-      const cook=100-cooked-historic;
-      document.getElementById("regretResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🚨</div><strong>DECISION HAS BEEN MADE.</strong><div style="margin-top:10px;color:var(--muted)">'+line+'</div></div>';
-      document.getElementById("cookedPct").textContent=cooked+"%";
-      document.getElementById("cookPct").textContent=cook+"%";
-      document.getElementById("historicPct").textContent=historic+"%";
-      document.getElementById("verdicts").style.display="grid";
+      const pick=lines[Math.floor(Math.random()*lines.length)];
+      document.getElementById("regretResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🚨</div><strong>'+pick[0]+'</strong><div style="margin-top:10px;color:var(--muted)">'+pick[1]+'</div><div class="tiny" style="margin-top:12px">decision has been made. no sequel required.</div></div>';
     };
 
     function runMini(mode,index,name){
