@@ -36,6 +36,59 @@ Planned layers:
 - optional "monthly boss battle" flavor
 - more mini-games and low-effort interactions
 
+## Batch 1 work branch
+
+Development branch: `feature/bmc-batch-1`
+
+Implemented without deploying:
+- **Bare Minimum Button** — simplified to three human battery states with intentionally tiny randomized tasks
+- **Regret Button** — simplified to one human verdict + one next-step response; fake percentage dashboard removed
+
+Current product focus:
+- **Core:** Bare Minimum Button, Regret Button, Character Development Tracker, One More Person × You Had To Be There
+- **Later:** Lorekeeper
+- **Dropped from BMC:** Random Cousin, Parallel Universe Group Chat, Bro Hold This
+
+### Batch 2: Character Development Tracker
+
+Development branch: `feature/bmc-batch-2-character-development`
+
+Implemented:
+- one-sentence moment logging
+- five lightweight arc types
+- playful "character development detected" responses
+- local-only history using browser storage
+- a tiny season summary based on recurring arc
+- no streaks, points, XP, or productivity pressure
+
+### Batch 3: One More Person × You Had To Be There
+
+Development branch: `feature/bmc-batch-3-one-more-person`
+
+Implemented:
+- quiet-presence modes instead of a chatbot
+- "sit here / fake study / keep me company / say something dumb" companion states
+- a tiny memory drawer for low-stakes moments
+- random resurfacing of older moments
+- local-only browser storage
+- no feeds, likes, followers, or social pressure
+
+### Batch 4: Lorekeeper — second brain
+
+Development branch: `feature/bmc-batch-4-lorekeeper`
+
+Implemented:
+- a lightweight "remember this" capture flow
+- four memory buckets: Me, People, Life, Maybe a Pattern
+- random gentle resurfacing of stored memories
+- cautious wording for patterns ("could be coincidence")
+- local-only browser storage for the MVP
+- no folders, dashboards, or clinical-style profiling
+
+The long-term direction is **remember → connect → resurface at the right moment**.
+
+The default `main` branch remains untouched until review.
+
 ## v0.1
 
 Current prototype is intentionally lightweight and static:

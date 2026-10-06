@@ -89,6 +89,106 @@
       border:0;border-radius:999px;background:var(--ink);color:#fff;padding:16px 22px;
       font-weight:850;cursor:pointer;box-shadow:0 12px 30px rgba(36,31,32,.16)
     }
+    .feature-zone{margin-top:24px}
+    .feature-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:16px}
+    .feature-head h2{margin:0;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.06em;line-height:.95}
+    .feature-head p{margin:0;color:var(--muted);max-width:460px;line-height:1.45}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .feature-card{
+      border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.82);
+      padding:24px;text-align:left;cursor:pointer;box-shadow:0 12px 32px rgba(76,47,57,.07);
+      transition:.18s ease
+    }
+    .feature-card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(76,47,57,.11)}
+    .feature-card .kicker{font-size:.76rem;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+    .feature-card h3{font-size:1.45rem;margin:10px 0 8px;letter-spacing:-.035em}
+    .feature-card p{margin:0;color:var(--muted);line-height:1.5}
+    .feature-card .launch{display:inline-block;margin-top:18px;font-weight:850}
+    .sheet{
+      position:fixed;inset:0;background:rgba(36,31,32,.36);backdrop-filter:blur(8px);
+      display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:20
+    }
+    .sheet.active{display:flex}
+    .sheet-card{
+      width:min(680px,100%);max-height:88vh;overflow:auto;background:#fffdfd;border:1px solid var(--line);
+      border-radius:30px;padding:26px;box-shadow:0 30px 90px rgba(36,31,32,.22)
+    }
+    .sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+    .sheet h2{margin:0;font-size:clamp(2rem,7vw,3.5rem);line-height:.95;letter-spacing:-.06em}
+    .sheet-close{border:1px solid var(--line);background:#fff;border-radius:999px;width:40px;height:40px;cursor:pointer}
+    .choice-row{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;cursor:pointer}
+    .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .result-box{margin-top:18px;border-radius:22px;background:#fff3f5;padding:22px;min-height:120px;display:flex;align-items:center;justify-content:center;text-align:center}
+    .result-box strong{font-size:1.25rem;line-height:1.35}
+    .regret-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+    .regret-type{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;text-align:left;cursor:pointer;font-weight:800}
+    .regret-type.active{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+    .verdicts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+    .verdict{padding:13px 8px;border-radius:16px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:800}
+    .dev-zone{margin-top:14px}
+    .dev-card{
+      width:100%;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#fff,#fff8fa);
+      padding:24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;
+      box-shadow:0 12px 32px rgba(76,47,57,.06);transition:.18s ease
+    }
+    .dev-card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(76,47,57,.1)}
+    .dev-card h3{margin:7px 0 6px;font-size:1.35rem;letter-spacing:-.035em}
+    .dev-card p{margin:0;color:var(--muted);line-height:1.45}
+    .dev-arrow{font-size:1.5rem}
+    .moment-input{
+      width:100%;min-height:96px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:#fff;
+      padding:14px 15px;color:var(--ink);font:inherit;line-height:1.45
+    }
+    .moment-list{display:grid;gap:10px;margin-top:16px}
+    .moment-item{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px 15px}
+    .moment-meta{font-size:.76rem;color:var(--muted);font-weight:800;letter-spacing:.05em;margin-bottom:5px}
+    .arc-badge{display:inline-block;margin-top:8px;border-radius:999px;background:#fff3f5;padding:7px 10px;font-size:.78rem;font-weight:850}
+    .season-box{margin-top:16px;padding:16px;border-radius:18px;background:#fff7e8;border:1px solid #f1e5c5}
+    .omp-zone{margin-top:14px}
+    .omp-card{
+      width:100%;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#fff,#f9fbff);
+      padding:24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;
+      box-shadow:0 12px 32px rgba(76,47,57,.06);transition:.18s ease
+    }
+    .omp-card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(76,47,57,.1)}
+    .omp-card h3{margin:7px 0 6px;font-size:1.35rem;letter-spacing:-.035em}
+    .omp-card p{margin:0;color:var(--muted);line-height:1.45}
+    .presence-box{
+      border:1px solid var(--line);border-radius:22px;background:#fff;padding:18px;margin-top:16px
+    }
+    .presence-state{font-size:1.15rem;font-weight:900;margin-bottom:6px}
+    .presence-copy{color:var(--muted);line-height:1.5}
+    .memory-composer{display:grid;gap:10px;margin-top:16px}
+    .memory-input{
+      width:100%;min-height:88px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:#fff;
+      padding:14px 15px;color:var(--ink);font:inherit;line-height:1.45
+    }
+    .memory-list{display:grid;gap:10px;margin-top:16px}
+    .memory-item{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 15px}
+    .memory-ago{font-size:.74rem;color:var(--muted);font-weight:800;letter-spacing:.05em;margin-bottom:5px}
+    .resurface{
+      margin-top:16px;padding:18px;border-radius:20px;background:#f5f7ff;border:1px solid #e1e6f6;text-align:center
+    }
+    .lore-zone{margin-top:14px}
+    .lore-card{
+      width:100%;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#fff,#fffaf2);
+      padding:24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;
+      box-shadow:0 12px 32px rgba(76,47,57,.06);transition:.18s ease
+    }
+    .lore-card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(76,47,57,.1)}
+    .lore-card h3{margin:7px 0 6px;font-size:1.35rem;letter-spacing:-.035em}
+    .lore-card p{margin:0;color:var(--muted);line-height:1.45}
+    .lore-input{
+      width:100%;min-height:96px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:#fff;
+      padding:14px 15px;color:var(--ink);font:inherit;line-height:1.45
+    }
+    .lore-list{display:grid;gap:10px;margin-top:16px}
+    .lore-item{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 15px}
+    .lore-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}
+    .lore-tag{font-size:.73rem;font-weight:900;letter-spacing:.08em;color:var(--muted)}
+    .lore-time{font-size:.73rem;color:var(--muted)}
+    .remember-box{margin-top:16px;padding:18px;border-radius:20px;background:#fff8e8;border:1px solid #f1e3bd;text-align:center}
     .footer{
       margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.83rem
     }
@@ -98,29 +198,50 @@
       .panel{padding:24px}
     }
     @media(max-width:560px){
-      .moods,.cards{grid-template-columns:1fr}
-      .topbar{align-items:flex-start}
+      .moods,.cards,.feature-grid,.regret-types{grid-template-columns:1fr}
+      .topbar,.feature-head{align-items:flex-start;flex-direction:column}
       h1{font-size:3.55rem}
+      .sheet{padding:10px}
+      .sheet-card{border-radius:24px;padding:20px}
     }
+
+    /* 2026 soft-tactile visual refresh */
+    :root{--bg:#f3f0ed;--paper:#fffdfb;--ink:#171416;--muted:#786f73;--line:rgba(35,26,30,.09);--accent:#ff6f91;--accent2:#ffd5df;--lilac:#dcd6ff;--butter:#ffe7a7;--blue:#d9ecff;--shadow:0 24px 70px rgba(42,31,36,.10);--radius:32px}
+    html{scroll-behavior:smooth}
+    body{background:radial-gradient(800px 520px at -10% -8%,rgba(255,183,203,.42),transparent 62%),radial-gradient(620px 500px at 104% 8%,rgba(220,214,255,.58),transparent 60%),radial-gradient(560px 420px at 68% 84%,rgba(255,231,167,.30),transparent 62%),var(--bg);letter-spacing:-.012em}
+    .shell{width:min(1180px,calc(100% - 28px));padding:18px 0 110px}
+    .topbar{position:sticky;top:12px;z-index:12;margin-bottom:18px;padding:10px 12px 10px 15px;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:rgba(255,253,251,.68);box-shadow:0 12px 32px rgba(49,37,43,.06);backdrop-filter:blur(20px) saturate(140%)}
+    .brand{display:flex;align-items:center;gap:9px;font-size:.95rem}.brand:before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(145deg,#ff6f91,#9a83ff);box-shadow:0 0 0 5px rgba(255,111,145,.10)}
+    .pill{background:rgba(255,255,255,.62);border-color:rgba(34,24,29,.08);padding:9px 12px}
+    .hero{grid-template-columns:1.16fr .84fr;gap:14px}.panel{border:1px solid rgba(255,255,255,.74);background:rgba(255,253,251,.72);box-shadow:0 20px 60px rgba(45,31,38,.08);backdrop-filter:blur(22px) saturate(135%);border-radius:34px}
+    .hero-copy{min-height:520px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;padding:42px}.hero-copy:after{content:"";position:absolute;width:280px;height:280px;border-radius:42% 58% 63% 37% / 46% 42% 58% 54%;right:-74px;bottom:-86px;background:linear-gradient(145deg,#ff91ad 0%,#ffd9a8 48%,#b9adff 100%);transform:rotate(-10deg)}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;width:max-content;padding:8px 11px;border-radius:999px;background:#171416;color:#fff;font-size:.72rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.eyebrow:before{content:"✦";color:#ffd7e1}
+    h1{font-size:clamp(3.25rem,7.1vw,6.4rem);line-height:.89;letter-spacing:-.078em;max-width:780px;position:relative;z-index:1}.sub{font-size:clamp(1rem,1.6vw,1.12rem);max-width:560px;line-height:1.55;position:relative;z-index:1}
+    .hero-foot{display:flex;gap:9px;flex-wrap:wrap;position:relative;z-index:1}.soft-chip{padding:9px 12px;border-radius:999px;border:1px solid rgba(28,21,24,.08);background:rgba(255,255,255,.66);font-size:.78rem;color:#5f565a;font-weight:730}
+    .vibe-panel{padding:24px}.vibe-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}.vibe-head .prompt{margin:0;font-size:1.4rem;letter-spacing:-.04em}
+    .moods{grid-template-columns:1fr 1fr;gap:10px}.mood{min-height:116px;border:0;border-radius:24px;padding:15px;position:relative;overflow:hidden;background:#fff;box-shadow:inset 0 0 0 1px rgba(30,22,25,.06);transition:.22s ease}.mood:after{content:"↗";position:absolute;right:13px;top:11px;font-weight:900;opacity:.34}
+    .mood:nth-child(1){background:#ffd6de}.mood:nth-child(2){background:#f1ddff}.mood:nth-child(3){background:#e7e3df}.mood:nth-child(4){background:#ffe4af}.mood:nth-child(5){background:#dcecff}.mood:nth-child(6){background:#dfe8d9}.mood:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 16px 30px rgba(50,37,43,.10)}
+    .feature-zone{margin-top:14px;padding:28px}.feature-grid{grid-template-columns:1.25fr .75fr;gap:10px}.feature-card{min-height:280px;border:0;border-radius:28px;padding:26px;box-shadow:none}.feature-card:first-child{background:#171416;color:#fff}.feature-card:first-child p,.feature-card:first-child .kicker{color:rgba(255,255,255,.67)}.feature-card:nth-child(2){background:#ffd9c8}.feature-card h3{font-size:clamp(1.55rem,2.6vw,2.3rem)}
+    .dev-zone,.omp-zone,.lore-zone{margin-top:10px}.dev-card,.omp-card,.lore-card{min-height:190px;border:0;border-radius:28px;padding:26px;box-shadow:none}.dev-card{background:#e5ddff}.omp-card{background:#ddecf6}.lore-card{background:#fff0bd}.dev-card h3,.omp-card h3,.lore-card h3{font-size:clamp(1.5rem,2.5vw,2.2rem)}.dev-arrow{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.58);font-size:1.1rem;flex:0 0 auto}
+    .sheet{background:rgba(23,20,22,.32);backdrop-filter:blur(15px) saturate(120%);padding:12px}.sheet-card{width:min(720px,100%);border:1px solid rgba(255,255,255,.74);border-radius:34px 34px 24px 24px;padding:26px;background:rgba(255,253,251,.92);box-shadow:0 30px 100px rgba(24,17,20,.24);backdrop-filter:blur(24px)}
+    .dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:15;display:flex;gap:5px;padding:7px;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:rgba(26,23,24,.86);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(25,18,21,.18)}.dock a{color:rgba(255,255,255,.72);text-decoration:none;padding:10px 13px;border-radius:16px;font-size:.78rem;font-weight:760}.dock a:hover{background:rgba(255,255,255,.10);color:#fff}
+    @media(max-width:820px){.hero{grid-template-columns:1fr}.hero-copy{min-height:450px}.feature-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.shell{width:min(100% - 16px,1180px);padding-top:8px}.topbar{top:7px;border-radius:18px;margin-bottom:9px}.topbar .pill{display:none}.hero{gap:9px}.hero-copy{min-height:430px;padding:28px 22px}.hero-copy:after{width:220px;height:220px}h1{font-size:clamp(3.2rem,16vw,5rem)}.vibe-panel{padding:17px}.moods{grid-template-columns:1fr 1fr;gap:8px}.mood{min-height:105px;border-radius:21px;padding:13px}.feature-zone{padding:20px}.feature-grid{grid-template-columns:1fr}.feature-card{min-height:220px}.dev-card,.omp-card,.lore-card{padding:21px;min-height:170px}.footer{padding-bottom:70px}.dock{width:calc(100% - 28px);justify-content:space-between}.dock a{flex:1;text-align:center;padding:10px 8px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
   </style>
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
       <div class="brand">bare minimum club</div>
-      <div class="pill tiny">no fixing. just surviving the vibe.</div>
+      <div class="pill tiny">a softer place to be a person</div>
     </header>
 
     <section class="hero" id="home">
-      <div class="panel">
-        <h1>rough day?<br>come waste 3 minutes here.</h1>
-        <p class="sub">
-          No productivity speech. No “be your best self.” Pick what your brain can tolerate and we’ll do the bare minimum together.
-        </p>
-      </div>
+      <div class="panel hero-copy"><div><span class="eyebrow">low battery club</span><h1>today doesn’t need to be impressive.</h1><p class="sub">No streak guilt. No “best version of yourself.” Just tiny distractions, quiet company, and a second brain for the stuff you don’t want to carry alone.</p></div><div class="hero-foot"><span class="soft-chip">zero fixing</span><span class="soft-chip">tiny wins count</span><span class="soft-chip">period context optional</span></div></div>
 
-      <div class="panel">
-        <p class="prompt">today’s vibe?</p>
+      <div class="panel vibe-panel"><div class="vibe-head"><p class="prompt">what can your brain tolerate?</p><span class="tiny">pick one</span></div>
         <div class="moods">
           <button class="mood" data-mode="rage"><span>😡</span>everyone is annoying<small>outsource violence to pixels</small></button>
           <button class="mood" data-mode="soft"><span>🥲</span>emotional for no reason<small>zero judgement zone</small></button>
@@ -151,6 +272,202 @@
         </div>
       </div>
     </section>
+
+    <section class="feature-zone panel" id="survive">
+      <div class="feature-head">
+        <div>
+          <div class="tiny">NEW · BATCH 1</div>
+          <h2>two buttons for when you're cooked.</h2>
+        </div>
+        <p>No dashboard. No streak guilt. Just one tiny thing to do — or one dramatic place to panic after you've already done the thing.</p>
+      </div>
+      <div class="feature-grid">
+        <button class="feature-card" id="bareMinimumLaunch">
+          <div class="kicker">BARE MINIMUM BUTTON</div>
+          <h3>what is the least I can possibly do?</h3>
+          <p>Pick your current battery level. BMC gives you one embarrassingly achievable task.</p>
+          <span class="launch">give me the minimum →</span>
+        </button>
+        <button class="feature-card" id="regretLaunch">
+          <div class="kicker">REGRET BUTTON</div>
+          <h3>I may have done something 💀</h3>
+          <p>For texts, posts, purchases and decisions that seemed smarter twelve seconds ago.</p>
+          <span class="launch">open damage control →</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="sheet" id="minimumSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">BARE MINIMUM BUTTON</div><h2>how cooked are we?</h2></div>
+          <button class="sheet-close" data-close="minimumSheet">✕</button>
+        </div>
+        <div class="choice-row" id="batteryChoices">
+          <button class="chip active" data-level="0">dead</button>
+          <button class="chip" data-level="1">barely functioning</button>
+          <button class="chip" data-level="2">I can do one thing</button>
+        </div>
+        <button class="big-action" id="minimumBtn">give me the bare minimum</button>
+        <div class="result-box" id="minimumResult"><span class="tiny">Your assignment will be aggressively achievable.</span></div>
+      </div>
+    </div>
+
+    <div class="sheet" id="regretSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">REGRET BUTTON</div><h2>okay. what did you do?</h2></div>
+          <button class="sheet-close" data-close="regretSheet">✕</button>
+        </div>
+        <div class="regret-types" id="regretTypes">
+          <button class="regret-type active" data-type="text">📱 texted someone</button>
+          <button class="regret-type" data-type="post">📸 posted something</button>
+          <button class="regret-type" data-type="buy">🛍️ bought something</button>
+          <button class="regret-type" data-type="said">🗣️ said something</button>
+          <button class="regret-type" data-type="other">🫠 other disaster</button>
+        </div>
+        <button class="big-action" id="assessBtn">okay tell me how bad</button>
+        <div class="result-box" id="regretResult"><span class="tiny">No lectures. The decision has already left the building.</span></div>
+      </div>
+    </div>
+
+    <section class="dev-zone">
+      <button class="dev-card" id="devLaunch">
+        <div>
+          <div class="tiny">BATCH 2 · CHARACTER DEVELOPMENT</div>
+          <h3>wait… that actually counted.</h3>
+          <p>Log the tiny moments nobody puts on a habit tracker. BMC keeps the arc, not the pressure.</p>
+        </div>
+        <div class="dev-arrow">↗</div>
+      </button>
+    </section>
+
+    <div class="sheet" id="devSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">CHARACTER DEVELOPMENT TRACKER</div><h2>what changed, even a little?</h2></div>
+          <button class="sheet-close" data-close="devSheet">✕</button>
+        </div>
+
+        <div class="choice-row" id="devTypes">
+          <button class="chip active" data-devtype="boundary">said no / chose myself</button>
+          <button class="chip" data-devtype="brave">did something scary</button>
+          <button class="chip" data-devtype="care">took care of myself</button>
+          <button class="chip" data-devtype="social">showed up for someone</button>
+          <button class="chip" data-devtype="other">random plot movement</button>
+        </div>
+
+        <textarea class="moment-input" id="devInput" maxlength="180" placeholder="e.g. replied without rewriting the message 12 times"></textarea>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="big-action" id="saveDev">log the moment</button>
+          <button class="chip" id="clearDev">clear local history</button>
+        </div>
+
+        <div class="result-box" id="devResult">
+          <span class="tiny">No streaks. No score. Just receipts that you're not exactly the same person you were.</span>
+        </div>
+
+        <div class="season-box" id="seasonBox">
+          <strong id="seasonTitle">season currently has no episodes.</strong>
+          <div class="tiny" id="seasonSub" style="margin-top:5px">log one tiny win and we'll start the lore.</div>
+        </div>
+
+        <div class="moment-list" id="momentList"></div>
+      </div>
+    </div>
+
+    <section class="omp-zone">
+      <button class="omp-card" id="ompLaunch">
+        <div>
+          <div class="tiny">BATCH 3 · ONE MORE PERSON × YOU HAD TO BE THERE</div>
+          <h3>don’t fix it. just sit here for a bit.</h3>
+          <p>Quiet company now, tiny useless memories later.</p>
+        </div>
+        <div class="dev-arrow">↗</div>
+      </button>
+    </section>
+
+    <div class="sheet" id="ompSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">ONE MORE PERSON</div><h2>what kind of company?</h2></div>
+          <button class="sheet-close" data-close="ompSheet">✕</button>
+        </div>
+
+        <div class="choice-row" id="presenceChoices">
+          <button class="chip active" data-presence="quiet">sit here quietly</button>
+          <button class="chip" data-presence="study">pretend we’re both studying</button>
+          <button class="chip" data-presence="walk">keep me company for a bit</button>
+          <button class="chip" data-presence="blank">say something dumb</button>
+        </div>
+
+        <div class="presence-box">
+          <div class="presence-state" id="presenceState">okay. I’m here.</div>
+          <div class="presence-copy" id="presenceCopy">No questions. No fixing. You can leave this open and do absolutely nothing.</div>
+        </div>
+
+        <div style="height:1px;background:var(--line);margin:22px 0"></div>
+
+        <div class="tiny">YOU HAD TO BE THERE</div>
+        <h3 style="margin:6px 0 5px;font-size:1.45rem">save the tiny stupid thing.</h3>
+        <p class="tiny" style="line-height:1.5">Not important enough for Instagram. Exactly important enough for here.</p>
+
+        <div class="memory-composer">
+          <textarea class="memory-input" id="memoryInput" maxlength="220" placeholder="e.g. the dog at the signal looked personally offended by us"></textarea>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="big-action" id="saveMemory">keep this</button>
+            <button class="chip" id="resurfaceMemory">show me an old one</button>
+          </div>
+        </div>
+
+        <div class="resurface" id="memoryResurface">
+          <span class="tiny">Nothing dramatic. Just a drawer for moments that would've disappeared.</span>
+        </div>
+        <div class="memory-list" id="memoryList"></div>
+      </div>
+    </div>
+
+    <section class="lore-zone" id="remember">
+      <button class="lore-card" id="loreLaunch">
+        <div>
+          <div class="tiny">BATCH 4 · LOREKEEPER</div>
+          <h3>leave it with me. I’ll remember.</h3>
+          <p>Your tiny second brain for people, yourself, life, and the stuff you keep forgetting.</p>
+        </div>
+        <div class="dev-arrow">↗</div>
+      </button>
+    </section>
+
+    <div class="sheet" id="loreSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">LOREKEEPER</div><h2>what should I remember?</h2></div>
+          <button class="sheet-close" data-close="loreSheet">✕</button>
+        </div>
+
+        <div class="choice-row" id="loreTypes">
+          <button class="chip active" data-loretype="me">me</button>
+          <button class="chip" data-loretype="people">people</button>
+          <button class="chip" data-loretype="life">life</button>
+          <button class="chip" data-loretype="pattern">maybe a pattern</button>
+        </div>
+
+        <textarea class="lore-input" id="loreInput" maxlength="260" placeholder="e.g. I actually felt better after going for a walk"></textarea>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="big-action" id="saveLore">remember this</button>
+          <button class="chip" id="surfaceLore">remind me of something</button>
+        </div>
+
+        <div class="remember-box" id="loreResult">
+          <span class="tiny">No folders. No perfect wording. Just leave the thought here.</span>
+        </div>
+
+        <div class="lore-list" id="loreList"></div>
+      </div>
+    </div>
+
+    <nav class="dock" aria-label="Quick navigation"><a href="#home">home</a><a href="#survive">survive</a><a href="#remember">remember</a></nav>
 
     <footer class="footer">
       <span>v0.1 · distraction first</span>
@@ -246,6 +563,302 @@
       experience.classList.add("active");
       experience.scrollIntoView({behavior:"smooth",block:"start"});
     }
+
+    const minimumTasks = {
+      0:[
+        "take three sips of water. yes, three. we're not ambitious here.",
+        "change into the comfiest thing you own. productivity ends there.",
+        "plug in your phone. congratulations, something in this house is recovering.",
+        "close one tab. not all of them. we're not doing miracles."
+      ],
+      1:[
+        "wash your face OR brush your teeth. choose your fighter.",
+        "eat literally one thing with nutritional value. a banana can carry this team.",
+        "reply to exactly one message that has been haunting your notifications.",
+        "put one thing back where it belongs. one. stop after that."
+      ],
+      2:[
+        "take a five-minute shower. concert performance optional.",
+        "do the smallest visible part of the task you've been avoiding, then leave.",
+        "make your bed badly. corners are capitalist propaganda.",
+        "walk around for four minutes and return dramatically."
+      ]
+    };
+
+    const regretLines = {
+      text:[
+        ["COOKED BUT RECOVERABLE","message has entered the atmosphere. do not send the follow-up explaining the first message. disappear for 17 minutes."],
+        ["LET HER COOK","the text exists now. dignity remains approximately intact. put the phone face-down."],
+        ["HISTORIC MOVE","bold. irreversible. possibly iconic. absolutely no second paragraph."]
+      ],
+      post:[
+        ["COOKED BUT RECOVERABLE","the post is live. everyone is thinking about it less than your brain says they are."],
+        ["LET HER COOK","post-post clarity is real. leave it alone for ten minutes before touching archive."],
+        ["HISTORIC MOVE","you posted it. stand by the vision or go make tea. both are respectable."]
+      ],
+      buy:[
+        ["COOKED BUT RECOVERABLE","financial character development detected. check the return window tomorrow, not while panicking."],
+        ["LET HER COOK","purchase complete. if it makes you happy and rent still exists, we continue."],
+        ["HISTORIC MOVE","bank account took emotional damage. the plot, however, has advanced."]
+      ],
+      said:[
+        ["COOKED BUT RECOVERABLE","sentence cannot be recalled from production. resist the urge to explain it into a bigger sentence."],
+        ["LET HER COOK","everyone else may have already moved on while you're replaying it in 4K."],
+        ["HISTORIC MOVE","verbal send-without-undo. terrifying technology. we move."]
+      ],
+      other:[
+        ["COOKED BUT RECOVERABLE","the council has classified this as survivable. no emergency sequel required."],
+        ["LET HER COOK","deeply interesting decision. give reality a minute to respond before doing anything else."],
+        ["HISTORIC MOVE","event logged under 'seemed reasonable at the time.' honestly, respect."]
+      ]
+    };
+
+    function openSheet(id){
+      const el=document.getElementById(id);
+      el.classList.add("active");
+      el.setAttribute("aria-hidden","false");
+    }
+    function closeSheet(id){
+      const el=document.getElementById(id);
+      el.classList.remove("active");
+      el.setAttribute("aria-hidden","true");
+    }
+
+    document.getElementById("bareMinimumLaunch").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("regretLaunch").onclick=()=>openSheet("regretSheet");
+    document.getElementById("devLaunch").onclick=()=>{renderDevMoments();openSheet("devSheet")};
+    document.getElementById("ompLaunch").onclick=()=>{renderTinyMemories();openSheet("ompSheet")};
+    document.getElementById("loreLaunch").onclick=()=>{renderLore();openSheet("loreSheet")};
+    document.querySelectorAll(".sheet-close").forEach(btn=>btn.onclick=()=>closeSheet(btn.dataset.close));
+    document.querySelectorAll(".sheet").forEach(sheet=>sheet.addEventListener("click",e=>{if(e.target===sheet) closeSheet(sheet.id)}));
+
+    let batteryLevel="0";
+    document.querySelectorAll("#batteryChoices .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#batteryChoices .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        batteryLevel=btn.dataset.level;
+      };
+    });
+    document.getElementById("minimumBtn").onclick=()=>{
+      const list=minimumTasks[batteryLevel];
+      const task=list[Math.floor(Math.random()*list.length)];
+      document.getElementById("minimumResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🫡</div><strong>'+task+'</strong><div class="tiny" style="margin-top:10px">doing more is optional. genuinely.</div></div>';
+    };
+
+    const loreLabels = {
+      me:"ABOUT ME",
+      people:"PEOPLE",
+      life:"LIFE",
+      pattern:"MAYBE A PATTERN"
+    };
+
+    let loreType="me";
+    document.querySelectorAll("#loreTypes .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#loreTypes .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        loreType=btn.dataset.loretype;
+      };
+    });
+
+    function getLore(){
+      try{return JSON.parse(localStorage.getItem("bmc_lorekeeper")||"[]")}catch(e){return[]}
+    }
+    function saveLoreItems(items){
+      localStorage.setItem("bmc_lorekeeper",JSON.stringify(items.slice(0,100)));
+    }
+    function renderLore(){
+      const items=getLore();
+      const list=document.getElementById("loreList");
+      list.innerHTML="";
+      items.slice(0,8).forEach(item=>{
+        const el=document.createElement("div");
+        el.className="lore-item";
+        el.innerHTML='<div class="lore-meta"><span class="lore-tag">'+loreLabels[item.type]+'</span><span class="lore-time">'+prettyAgo(item.at)+'</span></div><div>'+escapeHtml(item.text)+'</div>';
+        list.appendChild(el);
+      });
+    }
+
+    document.getElementById("saveLore").onclick=()=>{
+      const input=document.getElementById("loreInput");
+      const text=input.value.trim();
+      if(!text){
+        document.getElementById("loreResult").innerHTML='<strong>give me the thing 😭</strong><div class="tiny" style="margin-top:6px">messy sentence is completely fine.</div>';
+        return;
+      }
+      const items=getLore();
+      items.unshift({text,type:loreType,at:new Date().toISOString()});
+      saveLoreItems(items);
+      input.value="";
+      const copy={
+        me:"okay. future-you does not have to remember this manually.",
+        people:"got it. one less tiny person-detail living rent-free in your head.",
+        life:"kept. this can leave your brain now.",
+        pattern:"not calling it a fact yet. just keeping the breadcrumb."
+      };
+      document.getElementById("loreResult").innerHTML='<div><div style="font-size:2.4rem;margin-bottom:8px">🧠</div><strong>I’ll remember that.</strong><div class="tiny" style="margin-top:8px">'+copy[loreType]+'</div></div>';
+      renderLore();
+    };
+
+    document.getElementById("surfaceLore").onclick=()=>{
+      const items=getLore();
+      if(!items.length){
+        document.getElementById("loreResult").innerHTML='<strong>nothing stored yet.</strong><div class="tiny" style="margin-top:6px">leave one tiny thing with me first.</div>';
+        return;
+      }
+      const item=items[Math.floor(Math.random()*items.length)];
+      const intro=item.type==="pattern" ? "tiny thing I noticed — could be coincidence though." : "you told me this before.";
+      document.getElementById("loreResult").innerHTML='<div><div class="lore-tag">'+loreLabels[item.type]+'</div><strong style="display:block;margin-top:8px">'+escapeHtml(item.text)+'</strong><div class="tiny" style="margin-top:8px">'+intro+'</div></div>';
+    };
+
+    const presenceLines = {
+      quiet:["okay. I’m here.","No questions. No fixing. You can leave this open and do absolutely nothing."],
+      study:["fine. fake study session started.","I’ll be the person across the table also pretending not to check their phone."],
+      walk:["come on then.","No destination required. I’ll just keep the silence from feeling too loud."],
+      blank:["important update.","I have decided that spoons are just tiny shovels and I will not be taking questions."]
+    };
+    document.querySelectorAll("#presenceChoices .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#presenceChoices .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        const line=presenceLines[btn.dataset.presence];
+        document.getElementById("presenceState").textContent=line[0];
+        document.getElementById("presenceCopy").textContent=line[1];
+      };
+    });
+
+    function getTinyMemories(){
+      try{return JSON.parse(localStorage.getItem("bmc_tiny_memories")||"[]")}catch(e){return[]}
+    }
+    function saveTinyMemories(items){
+      localStorage.setItem("bmc_tiny_memories",JSON.stringify(items.slice(0,50)));
+    }
+    function prettyAgo(iso){
+      const diff=Date.now()-new Date(iso).getTime();
+      const days=Math.floor(diff/86400000);
+      if(days<=0)return "today";
+      if(days===1)return "yesterday";
+      return days+" days ago";
+    }
+    function renderTinyMemories(){
+      const items=getTinyMemories();
+      const list=document.getElementById("memoryList");
+      list.innerHTML="";
+      items.slice(0,5).forEach(item=>{
+        const el=document.createElement("div");
+        el.className="memory-item";
+        el.innerHTML='<div class="memory-ago">'+prettyAgo(item.at)+'</div><div>'+escapeHtml(item.text)+'</div>';
+        list.appendChild(el);
+      });
+    }
+    document.getElementById("saveMemory").onclick=()=>{
+      const input=document.getElementById("memoryInput");
+      const text=input.value.trim();
+      if(!text){
+        document.getElementById("memoryResurface").innerHTML='<strong>give me the tiny thing 😭</strong><div class="tiny" style="margin-top:6px">one sentence is enough.</div>';
+        return;
+      }
+      const items=getTinyMemories();
+      items.unshift({text,at:new Date().toISOString()});
+      saveTinyMemories(items);
+      input.value="";
+      document.getElementById("memoryResurface").innerHTML='<strong>kept.</strong><div class="tiny" style="margin-top:6px">future-you may find this absurdly funny for no valid reason.</div>';
+      renderTinyMemories();
+    };
+    document.getElementById("resurfaceMemory").onclick=()=>{
+      const items=getTinyMemories();
+      if(!items.length){
+        document.getElementById("memoryResurface").innerHTML='<strong>nothing in the drawer yet.</strong><div class="tiny" style="margin-top:6px">go live one tiny stupid moment first.</div>';
+        return;
+      }
+      const item=items[Math.floor(Math.random()*items.length)];
+      document.getElementById("memoryResurface").innerHTML='<div class="memory-ago">'+prettyAgo(item.at)+'</div><strong>'+escapeHtml(item.text)+'</strong><div class="tiny" style="margin-top:8px">you had to be there.</div>';
+    };
+
+    const devArcLabels = {
+      boundary:["BOUNDARIES ARC","chose yourself without filing a 14-page explanation"],
+      brave:["COURAGE ARC","did the thing while still being scared, which annoyingly counts"],
+      care:["SELF-CARE ARC","basic maintenance but make it character development"],
+      social:["SOFT HUMAN ARC","showed up for someone. suspiciously decent behavior"],
+      other:["PLOT MOVEMENT","unclear genre. definite development."]
+    };
+
+    let devType="boundary";
+    document.querySelectorAll("#devTypes .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#devTypes .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        devType=btn.dataset.devtype;
+      };
+    });
+
+    function getDevMoments(){
+      try{return JSON.parse(localStorage.getItem("bmc_dev_moments")||"[]")}catch(e){return[]}
+    }
+    function saveDevMoments(items){
+      localStorage.setItem("bmc_dev_moments",JSON.stringify(items.slice(0,30)));
+    }
+    function renderDevMoments(){
+      const items=getDevMoments();
+      const list=document.getElementById("momentList");
+      const seasonTitle=document.getElementById("seasonTitle");
+      const seasonSub=document.getElementById("seasonSub");
+      list.innerHTML="";
+      if(!items.length){
+        seasonTitle.textContent="season currently has no episodes.";
+        seasonSub.textContent="log one tiny win and we'll start the lore.";
+        return;
+      }
+      seasonTitle.textContent=items.length+" tiny moment"+(items.length===1?"":"s")+" survived this season.";
+      const counts={};
+      items.forEach(x=>counts[x.type]=(counts[x.type]||0)+1);
+      const top=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+      seasonSub.textContent="current recurring arc: "+devArcLabels[top][0].toLowerCase()+".";
+      items.slice(0,6).forEach(item=>{
+        const el=document.createElement("div");
+        el.className="moment-item";
+        el.innerHTML='<div class="moment-meta">'+new Date(item.at).toLocaleDateString(undefined,{month:"short",day:"numeric"})+'</div><div>'+escapeHtml(item.text)+'</div><span class="arc-badge">'+devArcLabels[item.type][0]+'</span>';
+        list.appendChild(el);
+      });
+    }
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+    }
+    document.getElementById("saveDev").onclick=()=>{
+      const input=document.getElementById("devInput");
+      const text=input.value.trim();
+      if(!text){
+        document.getElementById("devResult").innerHTML='<div><strong>bro give me one sentence 😭</strong><div class="tiny" style="margin-top:8px">even "I got out of bed" counts.</div></div>';
+        return;
+      }
+      const items=getDevMoments();
+      items.unshift({text,type:devType,at:new Date().toISOString()});
+      saveDevMoments(items);
+      const arc=devArcLabels[devType];
+      document.getElementById("devResult").innerHTML='<div><div style="font-size:2.5rem;margin-bottom:8px">🎬</div><strong>CHARACTER DEVELOPMENT DETECTED.</strong><div style="margin-top:8px;color:var(--muted)">'+arc[1]+'.</div><span class="arc-badge">'+arc[0]+'</span></div>';
+      input.value="";
+      renderDevMoments();
+    };
+    document.getElementById("clearDev").onclick=()=>{
+      localStorage.removeItem("bmc_dev_moments");
+      document.getElementById("devResult").innerHTML='<div><strong>history cleared.</strong><div class="tiny" style="margin-top:8px">the development still happened though. inconvenient.</div></div>';
+      renderDevMoments();
+    };
+
+    let regretType="text";
+    document.querySelectorAll("#regretTypes .regret-type").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#regretTypes .regret-type").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        regretType=btn.dataset.type;
+      };
+    });
+    document.getElementById("assessBtn").onclick=()=>{
+      const lines=regretLines[regretType];
+      const pick=lines[Math.floor(Math.random()*lines.length)];
+      document.getElementById("regretResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🚨</div><strong>'+pick[0]+'</strong><div style="margin-top:10px;color:var(--muted)">'+pick[1]+'</div><div class="tiny" style="margin-top:12px">decision has been made. no sequel required.</div></div>';
+    };
 
     function runMini(mode,index,name){
       if(name.includes("destroy")){
