@@ -36,6 +36,16 @@ Planned layers:
 - optional "monthly boss battle" flavor
 - more mini-games and low-effort interactions
 
+## Batch 1 work branch
+
+Development branch: `feature/bmc-batch-1`
+
+Implemented without deploying:
+- **Bare Minimum Button** — battery-level selector with intentionally tiny randomized tasks
+- **Regret Button** — decision-category selector, dramatic damage assessment, and playful verdict split
+
+The default `main` branch remains untouched until review.
+
 ## v0.1
 
 Current prototype is intentionally lightweight and static:
