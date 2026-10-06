@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="theme-color" content="#171617"/>
+  <title>BMC V2</title>
+  <meta name="description" content="Bare Minimum Club V2 — a low-pressure personal app for rough days."/>
+  <style>
+    :root{
+      --bg:#f3efe9;--paper:#fffdf9;--ink:#171617;--muted:#786f72;--line:rgba(31,24,27,.08);
+      --pink:#ff9db4;--pink2:#ffd7e1;--violet:#c9b8ff;--butter:#ffe49c;--blue:#cfe8f2;--sage:#dbe8d5;
+      --shadow:0 28px 90px rgba(38,29,33,.13);--r:28px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#d7d0ca}
+    button,input,textarea{font:inherit}
+    button{color:inherit}
+    .phone{
+      width:min(100%,520px);min-height:100dvh;margin:auto;background:var(--bg);position:relative;overflow:hidden;
+      box-shadow:var(--shadow)
+    }
+    .status-pad{height:max(14px,env(safe-area-inset-top))}
+    .top{
+      padding:14px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:10;
+      background:linear-gradient(180deg,rgba(243,239,233,.96),rgba(243,239,233,.82),transparent);backdrop-filter:blur(18px)
+    }
+    .brand{font-weight:950;letter-spacing:-.055em;font-size:1.03rem}
+    .avatar{width:36px;height:36px;border-radius:50%;border:0;background:linear-gradient(145deg,var(--pink),var(--violet));box-shadow:inset 0 0 0 4px rgba(255,255,255,.35)}
+    .screen{display:none;padding:0 16px 104px;animation:screenIn .24s ease}
+    .screen.active{display:block}
+    @keyframes screenIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .eyebrow{font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    h1{font-size:clamp(3rem,13vw,4.8rem);line-height:.88;letter-spacing:-.075em;margin:8px 0 14px}
+    h2{font-size:1.55rem;letter-spacing:-.045em;margin:0}
+    h3{font-size:1.03rem;margin:0;letter-spacing:-.02em}
+    p{margin:0}
+    .muted{color:var(--muted);line-height:1.5}
+    .hero{
+      min-height:300px;padding:22px;border-radius:32px;background:#171617;color:#fff;position:relative;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:space-between
+    }
+    .hero:after{
+      content:"";position:absolute;width:185px;height:185px;border-radius:46% 54% 59% 41% / 42% 50% 50% 58%;
+      right:-36px;bottom:-46px;background:conic-gradient(from 30deg,#ff8ba8,#ffd79b,#b6a1ff,#7cd5dc,#ff8ba8);
+      box-shadow:inset 12px 10px 26px rgba(255,255,255,.35);transform:rotate(-10deg)
+    }
+    .hero h1{font-size:clamp(2.8rem,12vw,4.3rem);max-width:360px;position:relative;z-index:1}
+    .hero .muted{color:rgba(255,255,255,.64);max-width:290px;position:relative;z-index:1}
+    .pulse-row{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
+    .pill{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 12px;font-size:.78rem;font-weight:800}
+    .hero .pill{background:rgba(255,255,255,.11);color:#fff;border-color:rgba(255,255,255,.1)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:22px 2px 11px}
+    .section-head small{color:var(--muted);font-size:.72rem}
+    .mood-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .mood{
+      border:0;border-radius:22px;padding:13px;text-align:left;min-height:104px;cursor:pointer;transition:.18s ease
+    }
+    .mood:active,.tile:active,.primary:active,.nav button:active{transform:scale(.975)}
+    .mood:nth-child(1){background:#ffd7df}.mood:nth-child(2){background:#eadcff}.mood:nth-child(3){background:#dcebf3}
+    .mood:nth-child(4){background:#ffe5aa}.mood:nth-child(5){background:#dce8d8}.mood:nth-child(6){background:#e7e2de}
+    .mood b{display:block;font-size:.82rem;line-height:1.12;margin-top:17px}.mood span{font-size:1.2rem}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .tile{
+      border:0;border-radius:26px;padding:18px;text-align:left;min-height:165px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between
+    }
+    .tile.dark{background:#171617;color:#fff}.tile.peach{background:#ffd2bd}.tile.blue{background:#d7e9f2}.tile.yellow{background:#ffe7a6}.tile.violet{background:#ded3ff}.tile.sage{background:#dce8d7}
+    .tile p{font-size:.82rem;line-height:1.4;opacity:.68;margin-top:8px}.tile .arrow{font-size:1.2rem}
+    .primary{border:0;border-radius:999px;background:#171617;color:#fff;padding:14px 18px;font-weight:900;cursor:pointer}
+    .soft{background:#fff;color:var(--ink);border:1px solid var(--line)}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:18px}
+    .checkrow{display:flex;gap:8px;overflow:auto;padding-bottom:3px;scrollbar-width:none}
+    .checkrow::-webkit-scrollbar{display:none}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 12px;white-space:nowrap;font-size:.78rem;font-weight:800;cursor:pointer}
+    .chip.active{background:#171617;color:#fff;border-color:#171617}
+    textarea,input{
+      width:100%;border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;color:var(--ink);outline:none
+    }
+    textarea{min-height:96px;resize:vertical}
+    .stack{display:grid;gap:10px}
+    .memory-item,.win-item{padding:14px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+    .meta{font-size:.7rem;font-weight:900;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+    .insight{
+      background:#171617;color:#fff;border-radius:28px;padding:20px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between
+    }
+    .insight p{color:rgba(255,255,255,.62);line-height:1.45}
+    .toggle-row{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+    .switch{width:46px;height:28px;border-radius:999px;background:#d7d2cf;position:relative;cursor:pointer}
+    .switch:after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;left:3px;top:3px;transition:.18s}
+    .switch.on{background:#171617}.switch.on:after{left:21px}
+    .nav{
+      position:fixed;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);
+      width:min(calc(100% - 24px),496px);padding:7px;background:rgba(23,22,23,.94);backdrop-filter:blur(20px);
+      display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border-radius:22px;z-index:20;box-shadow:0 18px 50px rgba(25,18,21,.22)
+    }
+    .nav button{border:0;background:transparent;color:rgba(255,255,255,.52);border-radius:16px;padding:9px 5px;font-size:.68rem;font-weight:800;cursor:pointer}
+    .nav button span{display:block;font-size:1.02rem;margin-bottom:3px}
+    .nav button.active{background:#fff;color:#171617}
+    .sheet{position:fixed;inset:0;background:rgba(20,17,19,.36);backdrop-filter:blur(10px);z-index:40;display:none;align-items:flex-end;justify-content:center}
+    .sheet.active{display:flex}
+    .sheet-card{width:min(100%,520px);max-height:88dvh;overflow:auto;background:var(--paper);border-radius:30px 30px 0 0;padding:20px 18px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -24px 70px rgba(35,27,31,.2)}
+    .sheet-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;margin-bottom:14px}
+    .close{border:0;width:38px;height:38px;border-radius:50%;background:#efebe7;cursor:pointer}
+    @media(min-width:760px){body{padding:24px}.phone{min-height:calc(100dvh - 48px);border-radius:42px}.nav{bottom:34px}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="status-pad"></div>
+    <header class="top"><div class="brand">bare minimum club</div><button class="avatar" aria-label="profile"></button></header>
+
+    <main>
+      <section class="screen active" data-screen="today">
+        <div class="hero">
+          <div><div class="eyebrow" style="color:rgba(255,255,255,.55)">today</div><h1>we're keeping this day small.</h1><p class="muted">You don't need a productive day. You need a survivable one.</p></div>
+          <div class="pulse-row"><span class="pill">no streaks</span><span class="pill">no fixing</span><span class="pill">tiny counts</span></div>
+        </div>
+
+        <div class="section-head"><h2>how are we arriving?</h2><small>tap, don't explain</small></div>
+        <div class="mood-row">
+          <button class="mood" data-mode="rage"><span>😤</span><b>everyone's annoying</b></button>
+          <button class="mood" data-mode="soft"><span>🥲</span><b>soft for no reason</b></button>
+          <button class="mood" data-mode="blank"><span>🫠</span><b>brain offline</b></button>
+          <button class="mood" data-mode="panic"><span>😭</span><b>distract me</b></button>
+          <button class="mood" data-mode="meh"><span>😐</span><b>just existing</b></button>
+          <button class="mood" data-mode="space"><span>🌫️</span><b>quiet please</b></button>
+        </div>
+
+        <div class="section-head"><h2>right now</h2><small>two taps max</small></div>
+        <div class="grid2">
+          <button class="tile dark" id="todayMinimum"><div><div class="meta" style="color:rgba(255,255,255,.45)">bare minimum</div><h3>what is the least I can do?</h3><p>One tiny thing. Then you're allowed to stop.</p></div><div class="arrow">↗</div></button>
+          <button class="tile peach" id="todayRegret"><div><div class="meta">damage control</div><h3>I may have done something.</h3><p>Post-send clarity lives here.</p></div><div class="arrow">↗</div></button>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="care">
+        <div class="eyebrow">care</div><h1>make the body easier to live in.</h1>
+        <p class="muted">No diagnosis. No lecture. Just comfort, low-effort care, and optional monthly context.</p>
+
+        <div class="section-head"><h2>what's loud today?</h2><small>choose any</small></div>
+        <div class="checkrow" id="careChips">
+          <button class="chip">cramps</button><button class="chip">low energy</button><button class="chip">bloated</button>
+          <button class="chip">irritable</button><button class="chip">headache</button><button class="chip">need space</button>
+        </div>
+
+        <div class="section-head"><h2>care kit</h2><small>low effort only</small></div>
+        <div class="grid2">
+          <button class="tile yellow" id="careMinimum"><div><div class="meta">survival mode</div><h3>bare minimum</h3><p>Give me one thing I can actually manage.</p></div><div class="arrow">↗</div></button>
+          <button class="tile blue" id="careCompany"><div><div class="meta">company</div><h3>stay here a bit</h3><p>Quiet presence. No fixing voice.</p></div><div class="arrow">↗</div></button>
+          <button class="tile sage" id="careComfort"><div><div class="meta">comfort</div><h3>what helped last time?</h3><p>Pull from your saved second-brain notes.</p></div><div class="arrow">↗</div></button>
+          <button class="tile violet" id="careDistraction"><div><div class="meta">distraction</div><h3>get me out of my head</h3><p>Tiny nonsense. Zero growth required.</p></div><div class="arrow">↗</div></button>
+        </div>
+
+        <div class="section-head"><h2>monthly context</h2><small>optional</small></div>
+        <div class="card">
+          <div class="toggle-row"><div><h3>monthly boss battle mode</h3><p class="muted" style="font-size:.8rem;margin-top:4px">Let BMC adapt copy and comfort suggestions around rough monthly days.</p></div><div class="switch" id="cycleToggle"></div></div>
+          <div class="toggle-row" style="border:0"><div><h3>keep this private on device</h3><p class="muted" style="font-size:.8rem;margin-top:4px">V2 prototype stores preferences locally.</p></div><div class="switch on"></div></div>
+        </div>
+      </section>
+
+      <section class="screen" data-screen="memory">
+        <div class="eyebrow">memory</div><h1>you don't have to keep everything in your head.</h1>
+        <p class="muted">Lorekeeper remembers the tiny details; You Had To Be There keeps the moments that would've disappeared.</p>
+
+        <div class="section-head"><h2>lorekeeper</h2><small>second brain</small></div>
+        <div class="card">
+          <div class="checkrow" id="memoryTypes"><button class="chip active" data-type="me">me</button><button class="chip" data-type="people">people</button><button class="chip" data-type="life">life</button><button class="chip" data-type="pattern">maybe a pattern</button></div>
+          <textarea id="memoryInput" placeholder="e.g. hot shower actually helped last time"></textarea>
+          <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><button class="primary" id="saveMemory">remember this</button><button class="primary soft" id="surfaceMemory">bring one back</button></div>
+          <div id="memoryResult" class="muted" style="font-size:.82rem;margin-top:12px">No folders. Messy sentence is fine.</div>
+        </div>
+
+        <div class="section-head"><h2>tiny memories</h2><small>you had to be there</small></div>
+        <div class="stack" id="memoryList"></div>
+      </section>
+
+      <section class="screen" data-screen="me">
+        <div class="eyebrow">me</div><h1>proof that tiny things still counted.</h1>
+        <p class="muted">No streak. No score. Just a soft record of who you're becoming.</p>
+
+        <div class="section-head"><h2>character development</h2><small>recent arc</small></div>
+        <div class="insight">
+          <div><div class="meta" style="color:rgba(255,255,255,.46)">current arc</div><h2 id="arcTitle" style="font-size:2.2rem">season hasn't started yet.</h2></div>
+          <p id="arcCopy">Log one tiny moment and BMC will start keeping receipts.</p>
+        </div>
+
+        <div class="section-head"><h2>log one</h2><small>one sentence</small></div>
+        <div class="card">
+          <div class="checkrow" id="winTypes"><button class="chip active" data-win="boundary">chose myself</button><button class="chip" data-win="brave">did scary thing</button><button class="chip" data-win="care">took care</button><button class="chip" data-win="social">showed up</button></div>
+          <textarea id="winInput" placeholder="e.g. I said no without explaining for ten minutes"></textarea>
+          <button class="primary" id="saveWin" style="margin-top:10px">that counted</button>
+        </div>
+
+        <div class="section-head"><h2>recent receipts</h2><small>local only</small></div>
+        <div class="stack" id="winList"></div>
+      </section>
+    </main>
+
+    <nav class="nav" aria-label="Main navigation">
+      <button class="active" data-nav="today"><span>◉</span>Today</button>
+      <button data-nav="care"><span>✦</span>Care</button>
+      <button data-nav="memory"><span>⌁</span>Memory</button>
+      <button data-nav="me"><span>◎</span>Me</button>
+    </nav>
+  </div>
+
+  <div class="sheet" id="minimumSheet"><div class="sheet-card"><div class="sheet-top"><div><div class="eyebrow">bare minimum</div><h2 style="font-size:2.2rem">how cooked are we?</h2></div><button class="close" data-close>✕</button></div><div class="checkrow" id="batteryChoices"><button class="chip active" data-level="0">dead</button><button class="chip" data-level="1">barely functioning</button><button class="chip" data-level="2">I can do one thing</button></div><button class="primary" id="minimumBtn" style="margin-top:14px">give me the minimum</button><div id="minimumResult" class="card" style="margin-top:12px">Your assignment will be aggressively achievable.</div></div></div>
+
+  <div class="sheet" id="regretSheet"><div class="sheet-card"><div class="sheet-top"><div><div class="eyebrow">regret button</div><h2 style="font-size:2.2rem">okay. what did you do?</h2></div><button class="close" data-close>✕</button></div><div class="checkrow" id="regretTypes"><button class="chip active" data-regret="text">texted</button><button class="chip" data-regret="post">posted</button><button class="chip" data-regret="buy">bought</button><button class="chip" data-regret="said">said something</button></div><button class="primary" id="regretBtn" style="margin-top:14px">tell me how bad</button><div id="regretResult" class="card" style="margin-top:12px">No lecture. The decision already happened.</div></div></div>
+
+  <div class="sheet" id="companySheet"><div class="sheet-card"><div class="sheet-top"><div><div class="eyebrow">one more person</div><h2 style="font-size:2.2rem">what kind of company?</h2></div><button class="close" data-close>✕</button></div><div class="checkrow" id="companyTypes"><button class="chip active" data-company="quiet">sit quietly</button><button class="chip" data-company="study">fake study</button><button class="chip" data-company="walk">keep me company</button><button class="chip" data-company="dumb">say something dumb</button></div><div id="companyResult" class="card" style="margin-top:12px">Okay. I'm here. No questions.</div></div></div>
+
+  <div class="sheet" id="distractSheet"><div class="sheet-card"><div class="sheet-top"><div><div class="eyebrow">emergency nonsense</div><h2 style="font-size:2.2rem">brain, look over here.</h2></div><button class="close" data-close>✕</button></div><button class="primary" id="chaosBtn">give me something stupid</button><div id="chaosResult" class="card" style="margin-top:12px">No lesson. No growth arc.</div></div></div>
+
+  <script>
+    const screens=[...document.querySelectorAll(".screen")], navs=[...document.querySelectorAll("[data-nav]")];
+    function go(name){screens.forEach(s=>s.classList.toggle("active",s.dataset.screen===name));navs.forEach(n=>n.classList.toggle("active",n.dataset.nav===name));window.scrollTo({top:0,behavior:"smooth"})}
+    navs.forEach(n=>n.onclick=()=>go(n.dataset.nav));
+
+    function openSheet(id){document.getElementById(id).classList.add("active")}
+    document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>b.closest(".sheet").classList.remove("active"));
+    document.querySelectorAll(".sheet").forEach(s=>s.addEventListener("click",e=>{if(e.target===s)s.classList.remove("active")}));
+
+    document.getElementById("todayMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("careMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("todayRegret").onclick=()=>openSheet("regretSheet");
+    document.getElementById("careCompany").onclick=()=>openSheet("companySheet");
+    document.getElementById("careDistraction").onclick=()=>openSheet("distractSheet");
+    document.getElementById("careComfort").onclick=()=>{go("memory");document.getElementById("memoryResult").textContent="Try 'bring one back' — BMC will surface something you've saved before."};
+
+    document.querySelectorAll(".mood").forEach(b=>b.onclick=()=>openSheet(b.dataset.mode==="panic"?"distractSheet":b.dataset.mode==="space"?"companySheet":"minimumSheet"));
+
+    document.querySelectorAll("#careChips .chip").forEach(b=>b.onclick=()=>b.classList.toggle("active"));
+    document.getElementById("cycleToggle").onclick=e=>{e.currentTarget.classList.toggle("on");localStorage.setItem("bmc_v2_cycle",e.currentTarget.classList.contains("on")?"1":"0")};
+    if(localStorage.getItem("bmc_v2_cycle")==="1")document.getElementById("cycleToggle").classList.add("on");
+
+    let battery="0";
+    document.querySelectorAll("#batteryChoices .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#batteryChoices .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");battery=b.dataset.level});
+    const tasks={
+      0:["three sips of water. that's the whole assignment.","plug your phone in. something should recover today.","change into the comfiest thing you own."],
+      1:["wash your face OR brush your teeth. pick one.","reply to exactly one message that's haunting you.","eat one thing with actual nutritional value."],
+      2:["do ten minutes of the thing, then stop on purpose.","prep one tiny thing tomorrow-you will notice.","clear one small surface. do not accidentally clean the house."]
+    };
+    document.getElementById("minimumBtn").onclick=()=>{const a=tasks[battery],t=a[Math.floor(Math.random()*a.length)];document.getElementById("minimumResult").innerHTML="<b>"+t+"</b><div class='muted' style='font-size:.8rem;margin-top:7px'>doing more is optional.</div>"};
+
+    let regret="text";
+    document.querySelectorAll("#regretTypes .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#regretTypes .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");regret=b.dataset.regret});
+    const regrets={
+      text:["LET IT SIT","Do not send the follow-up explaining the first text. Put the phone down for 17 minutes."],
+      post:["POST-POST CLARITY","Everyone is thinking about it less than your brain says they are."],
+      buy:["FINANCIAL CHARACTER DEVELOPMENT","Check the return window tomorrow. Panic-shopping the panic will not help."],
+      said:["VERBAL SEND WITHOUT UNDO","Resist the urge to explain the sentence into a larger sentence."]
+    };
+    document.getElementById("regretBtn").onclick=()=>document.getElementById("regretResult").innerHTML="<b>"+regrets[regret][0]+"</b><div class='muted' style='font-size:.82rem;margin-top:7px'>"+regrets[regret][1]+"</div>";
+
+    const company={
+      quiet:"Okay. I'm here. No questions. No fixing.",
+      study:"Fine. Fake study session started. I'll also pretend not to check my phone.",
+      walk:"Come on then. No destination required.",
+      dumb:"Important update: spoons are tiny shovels and I will not be taking questions."
+    };
+    document.querySelectorAll("#companyTypes .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#companyTypes .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById("companyResult").textContent=company[b.dataset.company]});
+
+    const nonsense=["Name three objects near you that would be terrible roommates.","Pick the nearest object. It is now under investigation. For what? Unknown.","Open your camera and find the most dramatic shadow in the room.","Your side quest: find something blue before the next song ends.","Rate your current sitting position like a restaurant review."];
+    document.getElementById("chaosBtn").onclick=()=>document.getElementById("chaosResult").textContent=nonsense[Math.floor(Math.random()*nonsense.length)];
+
+    let memType="me";
+    document.querySelectorAll("#memoryTypes .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#memoryTypes .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");memType=b.dataset.type});
+    function getMem(){try{return JSON.parse(localStorage.getItem("bmc_v2_memory")||"[]")}catch{return[]}}
+    function setMem(x){localStorage.setItem("bmc_v2_memory",JSON.stringify(x.slice(0,100)))}
+    function renderMem(){const el=document.getElementById("memoryList"),a=getMem();el.innerHTML=a.slice(0,8).map(m=>"<div class='memory-item'><div class='meta'>"+m.type+"</div>"+esc(m.text)+"</div>").join("")||"<div class='muted'>Nothing here yet. That's allowed.</div>"}
+    document.getElementById("saveMemory").onclick=()=>{const i=document.getElementById("memoryInput"),v=i.value.trim();if(!v)return;const a=getMem();a.unshift({text:v,type:memType,at:Date.now()});setMem(a);i.value="";document.getElementById("memoryResult").textContent="I'll remember that.";renderMem()};
+    document.getElementById("surfaceMemory").onclick=()=>{const a=getMem();document.getElementById("memoryResult").textContent=a.length?a[Math.floor(Math.random()*a.length)].text:"Nothing stored yet."};
+    function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+
+    let winType="boundary";
+    document.querySelectorAll("#winTypes .chip").forEach(b=>b.onclick=()=>{document.querySelectorAll("#winTypes .chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");winType=b.dataset.win});
+    function getWins(){try{return JSON.parse(localStorage.getItem("bmc_v2_wins")||"[]")}catch{return[]}}
+    function setWins(x){localStorage.setItem("bmc_v2_wins",JSON.stringify(x.slice(0,50)))}
+    const arcNames={boundary:"boundaries arc",brave:"courage arc",care:"taking-care-of-me arc",social:"soft human arc"};
+    function renderWins(){const a=getWins(),list=document.getElementById("winList");list.innerHTML=a.slice(0,6).map(w=>"<div class='win-item'><div class='meta'>"+arcNames[w.type]+"</div>"+esc(w.text)+"</div>").join("")||"<div class='muted'>No receipts yet.</div>";if(a.length){const c={};a.forEach(w=>c[w.type]=(c[w.type]||0)+1);const t=Object.keys(c).sort((x,y)=>c[y]-c[x])[0];document.getElementById("arcTitle").textContent=arcNames[t];document.getElementById("arcCopy").textContent=a.length+" tiny moment"+(a.length===1?"":"s")+" logged this season."}}
+    document.getElementById("saveWin").onclick=()=>{const i=document.getElementById("winInput"),v=i.value.trim();if(!v)return;const a=getWins();a.unshift({text:v,type:winType,at:Date.now()});setWins(a);i.value="";renderWins()};
+
+    renderMem();renderWins();
+  </script>
+</body>
+</html>
