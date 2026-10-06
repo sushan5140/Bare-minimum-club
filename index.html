@@ -145,6 +145,31 @@
     .moment-meta{font-size:.76rem;color:var(--muted);font-weight:800;letter-spacing:.05em;margin-bottom:5px}
     .arc-badge{display:inline-block;margin-top:8px;border-radius:999px;background:#fff3f5;padding:7px 10px;font-size:.78rem;font-weight:850}
     .season-box{margin-top:16px;padding:16px;border-radius:18px;background:#fff7e8;border:1px solid #f1e5c5}
+    .omp-zone{margin-top:14px}
+    .omp-card{
+      width:100%;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#fff,#f9fbff);
+      padding:24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;
+      box-shadow:0 12px 32px rgba(76,47,57,.06);transition:.18s ease
+    }
+    .omp-card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(76,47,57,.1)}
+    .omp-card h3{margin:7px 0 6px;font-size:1.35rem;letter-spacing:-.035em}
+    .omp-card p{margin:0;color:var(--muted);line-height:1.45}
+    .presence-box{
+      border:1px solid var(--line);border-radius:22px;background:#fff;padding:18px;margin-top:16px
+    }
+    .presence-state{font-size:1.15rem;font-weight:900;margin-bottom:6px}
+    .presence-copy{color:var(--muted);line-height:1.5}
+    .memory-composer{display:grid;gap:10px;margin-top:16px}
+    .memory-input{
+      width:100%;min-height:88px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:#fff;
+      padding:14px 15px;color:var(--ink);font:inherit;line-height:1.45
+    }
+    .memory-list{display:grid;gap:10px;margin-top:16px}
+    .memory-item{border:1px solid var(--line);border-radius:18px;background:#fff;padding:14px 15px}
+    .memory-ago{font-size:.74rem;color:var(--muted);font-weight:800;letter-spacing:.05em;margin-bottom:5px}
+    .resurface{
+      margin-top:16px;padding:18px;border-radius:20px;background:#f5f7ff;border:1px solid #e1e6f6;text-align:center
+    }
     .footer{
       margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.83rem
     }
@@ -313,6 +338,57 @@
       </div>
     </div>
 
+    <section class="omp-zone">
+      <button class="omp-card" id="ompLaunch">
+        <div>
+          <div class="tiny">BATCH 3 · ONE MORE PERSON × YOU HAD TO BE THERE</div>
+          <h3>don’t fix it. just sit here for a bit.</h3>
+          <p>Quiet company now, tiny useless memories later.</p>
+        </div>
+        <div class="dev-arrow">↗</div>
+      </button>
+    </section>
+
+    <div class="sheet" id="ompSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">ONE MORE PERSON</div><h2>what kind of company?</h2></div>
+          <button class="sheet-close" data-close="ompSheet">✕</button>
+        </div>
+
+        <div class="choice-row" id="presenceChoices">
+          <button class="chip active" data-presence="quiet">sit here quietly</button>
+          <button class="chip" data-presence="study">pretend we’re both studying</button>
+          <button class="chip" data-presence="walk">keep me company for a bit</button>
+          <button class="chip" data-presence="blank">say something dumb</button>
+        </div>
+
+        <div class="presence-box">
+          <div class="presence-state" id="presenceState">okay. I’m here.</div>
+          <div class="presence-copy" id="presenceCopy">No questions. No fixing. You can leave this open and do absolutely nothing.</div>
+        </div>
+
+        <div style="height:1px;background:var(--line);margin:22px 0"></div>
+
+        <div class="tiny">YOU HAD TO BE THERE</div>
+        <h3 style="margin:6px 0 5px;font-size:1.45rem">save the tiny stupid thing.</h3>
+        <p class="tiny" style="line-height:1.5">Not important enough for Instagram. Exactly important enough for here.</p>
+
+        <div class="memory-composer">
+          <textarea class="memory-input" id="memoryInput" maxlength="220" placeholder="e.g. the dog at the signal looked personally offended by us"></textarea>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="big-action" id="saveMemory">keep this</button>
+            <button class="chip" id="resurfaceMemory">show me an old one</button>
+          </div>
+        </div>
+
+        <div class="resurface" id="memoryResurface">
+          <span class="tiny">Nothing dramatic. Just a drawer for moments that would've disappeared.</span>
+        </div>
+        <div class="memory-list" id="memoryList"></div>
+      </div>
+    </div>
+
     <footer class="footer">
       <span>v0.1 · distraction first</span>
       <span>made for bad days, monthly boss battles, and absolutely no motivational speeches</span>
@@ -471,6 +547,7 @@
     document.getElementById("bareMinimumLaunch").onclick=()=>openSheet("minimumSheet");
     document.getElementById("regretLaunch").onclick=()=>openSheet("regretSheet");
     document.getElementById("devLaunch").onclick=()=>{renderDevMoments();openSheet("devSheet")};
+    document.getElementById("ompLaunch").onclick=()=>{renderTinyMemories();openSheet("ompSheet")};
     document.querySelectorAll(".sheet-close").forEach(btn=>btn.onclick=()=>closeSheet(btn.dataset.close));
     document.querySelectorAll(".sheet").forEach(sheet=>sheet.addEventListener("click",e=>{if(e.target===sheet) closeSheet(sheet.id)}));
 
@@ -486,6 +563,70 @@
       const list=minimumTasks[batteryLevel];
       const task=list[Math.floor(Math.random()*list.length)];
       document.getElementById("minimumResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🫡</div><strong>'+task+'</strong><div class="tiny" style="margin-top:10px">doing more is optional. genuinely.</div></div>';
+    };
+
+    const presenceLines = {
+      quiet:["okay. I’m here.","No questions. No fixing. You can leave this open and do absolutely nothing."],
+      study:["fine. fake study session started.","I’ll be the person across the table also pretending not to check their phone."],
+      walk:["come on then.","No destination required. I’ll just keep the silence from feeling too loud."],
+      blank:["important update.","I have decided that spoons are just tiny shovels and I will not be taking questions."]
+    };
+    document.querySelectorAll("#presenceChoices .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#presenceChoices .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        const line=presenceLines[btn.dataset.presence];
+        document.getElementById("presenceState").textContent=line[0];
+        document.getElementById("presenceCopy").textContent=line[1];
+      };
+    });
+
+    function getTinyMemories(){
+      try{return JSON.parse(localStorage.getItem("bmc_tiny_memories")||"[]")}catch(e){return[]}
+    }
+    function saveTinyMemories(items){
+      localStorage.setItem("bmc_tiny_memories",JSON.stringify(items.slice(0,50)));
+    }
+    function prettyAgo(iso){
+      const diff=Date.now()-new Date(iso).getTime();
+      const days=Math.floor(diff/86400000);
+      if(days<=0)return "today";
+      if(days===1)return "yesterday";
+      return days+" days ago";
+    }
+    function renderTinyMemories(){
+      const items=getTinyMemories();
+      const list=document.getElementById("memoryList");
+      list.innerHTML="";
+      items.slice(0,5).forEach(item=>{
+        const el=document.createElement("div");
+        el.className="memory-item";
+        el.innerHTML='<div class="memory-ago">'+prettyAgo(item.at)+'</div><div>'+escapeHtml(item.text)+'</div>';
+        list.appendChild(el);
+      });
+    }
+    document.getElementById("saveMemory").onclick=()=>{
+      const input=document.getElementById("memoryInput");
+      const text=input.value.trim();
+      if(!text){
+        document.getElementById("memoryResurface").innerHTML='<strong>give me the tiny thing 😭</strong><div class="tiny" style="margin-top:6px">one sentence is enough.</div>';
+        return;
+      }
+      const items=getTinyMemories();
+      items.unshift({text,at:new Date().toISOString()});
+      saveTinyMemories(items);
+      input.value="";
+      document.getElementById("memoryResurface").innerHTML='<strong>kept.</strong><div class="tiny" style="margin-top:6px">future-you may find this absurdly funny for no valid reason.</div>';
+      renderTinyMemories();
+    };
+    document.getElementById("resurfaceMemory").onclick=()=>{
+      const items=getTinyMemories();
+      if(!items.length){
+        document.getElementById("memoryResurface").innerHTML='<strong>nothing in the drawer yet.</strong><div class="tiny" style="margin-top:6px">go live one tiny stupid moment first.</div>';
+        return;
+      }
+      const item=items[Math.floor(Math.random()*items.length)];
+      document.getElementById("memoryResurface").innerHTML='<div class="memory-ago">'+prettyAgo(item.at)+'</div><strong>'+escapeHtml(item.text)+'</strong><div class="tiny" style="margin-top:8px">you had to be there.</div>';
     };
 
     const devArcLabels = {
