@@ -229,10 +229,189 @@
     @media(max-width:560px){.shell{width:min(100% - 16px,1180px);padding-top:8px}.topbar{top:7px;border-radius:18px;margin-bottom:9px}.topbar .pill{display:none}.hero{gap:9px}.hero-copy{min-height:430px;padding:28px 22px}.hero-copy:after{width:220px;height:220px}h1{font-size:clamp(3.2rem,16vw,5rem)}.vibe-panel{padding:17px}.moods{grid-template-columns:1fr 1fr;gap:8px}.mood{min-height:105px;border-radius:21px;padding:13px}.feature-zone{padding:20px}.feature-grid{grid-template-columns:1fr}.feature-card{min-height:220px}.dev-card,.omp-card,.lore-card{padding:21px;min-height:170px}.footer{padding-bottom:70px}.dock{width:calc(100% - 28px);justify-content:space-between}.dock a{flex:1;text-align:center;padding:10px 8px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+
+    /* Art-direction v2: actual app shell, not a landing page */
+    .topbar,.hero,.feature-zone,.dev-zone,.omp-zone,.lore-zone,.dock{display:none!important}
+    .shell{width:min(1440px,calc(100% - 24px));padding:12px 0 90px}
+    body{background:#ddd7d1}
+    .app-frame{
+      min-height:calc(100vh - 24px);display:grid;grid-template-columns:220px 1fr;gap:0;
+      background:#f7f4ef;border-radius:38px;overflow:hidden;border:1px solid rgba(255,255,255,.75);
+      box-shadow:0 28px 90px rgba(36,29,32,.14)
+    }
+    .app-side{
+      background:#171516;color:#fff;padding:28px 22px;display:flex;flex-direction:column;justify-content:space-between;
+      position:relative;overflow:hidden
+    }
+    .app-side:after{
+      content:"";position:absolute;width:220px;height:220px;border-radius:50%;left:-85px;bottom:68px;
+      background:radial-gradient(circle at 65% 35%,#ffd4dd 0 18%,#ff7899 19% 45%,#8e7dff 46% 68%,transparent 69%);
+      opacity:.92;filter:saturate(.9)
+    }
+    .side-brand{font-weight:900;letter-spacing:-.05em;font-size:1.05rem;position:relative;z-index:1}
+    .side-brand small{display:block;color:rgba(255,255,255,.48);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-top:5px}
+    .side-nav{display:grid;gap:8px;position:relative;z-index:1}
+    .side-nav button{
+      border:0;background:transparent;color:rgba(255,255,255,.62);text-align:left;padding:12px 13px;border-radius:14px;
+      font:inherit;font-size:.84rem;font-weight:760;cursor:pointer
+    }
+    .side-nav button.active,.side-nav button:hover{background:rgba(255,255,255,.09);color:#fff}
+    .side-foot{position:relative;z-index:1;color:rgba(255,255,255,.48);font-size:.75rem;line-height:1.5}
+    .app-main{padding:28px;min-width:0}
+    .app-mobile-head{display:none}
+    .dash-head{display:flex;justify-content:space-between;gap:22px;align-items:flex-start;margin-bottom:22px}
+    .dash-head h1{font-size:clamp(2.7rem,5vw,5.7rem);max-width:830px;margin:0;line-height:.9}
+    .dash-head p{max-width:420px;margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5}
+    .day-chip{padding:10px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.75rem;font-weight:850;white-space:nowrap}
+    .dash-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:12px}
+    .dash-card{border-radius:30px;overflow:hidden;position:relative;min-width:0}
+    .checkin-card{background:#dcd5ff;padding:28px;min-height:430px;display:flex;flex-direction:column;justify-content:space-between}
+    .checkin-card h2{font-size:clamp(2.2rem,4vw,4.2rem);line-height:.92;letter-spacing:-.065em;margin:0;max-width:580px}
+    .checkin-card .micro{margin-top:10px;color:#5e5878;font-size:.87rem}
+    .mood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:2}
+    .mood-tile{
+      border:0;border-radius:18px;background:rgba(255,255,255,.58);min-height:84px;padding:12px;text-align:left;cursor:pointer;
+      transition:.18s ease;box-shadow:inset 0 0 0 1px rgba(29,22,34,.05)
+    }
+    .mood-tile:hover{transform:translateY(-2px);background:#fff}
+    .mood-tile b{display:block;font-size:.88rem;line-height:1.08}.mood-tile span{display:block;font-size:.72rem;color:#6c6680;margin-top:5px}
+    .mood-orb{
+      position:absolute;width:210px;height:210px;right:32px;top:34px;border-radius:45% 55% 58% 42% / 48% 42% 58% 52%;
+      background:conic-gradient(from 35deg,#ffd9a8,#ff809f,#a08fff,#8ed6dd,#ffd9a8);
+      box-shadow:inset 14px 12px 30px rgba(255,255,255,.38),0 22px 45px rgba(75,57,110,.16);transform:rotate(-8deg);opacity:.95
+    }
+    .minimum-hero{
+      background:#171516;color:#fff;padding:28px;min-height:430px;display:flex;flex-direction:column;justify-content:space-between
+    }
+    .minimum-hero .eyeline{font-size:.72rem;text-transform:uppercase;letter-spacing:.11em;color:rgba(255,255,255,.48);font-weight:850}
+    .minimum-hero h2{font-size:clamp(2.4rem,4.5vw,4.7rem);line-height:.9;letter-spacing:-.07em;margin:12px 0;max-width:460px}
+    .minimum-hero p{color:rgba(255,255,255,.58);max-width:380px;line-height:1.45}
+    .hero-button{
+      align-self:flex-start;border:0;border-radius:999px;padding:14px 18px;background:#fff;color:#171516;font-weight:900;cursor:pointer
+    }
+    .hero-button:hover{transform:translateY(-1px)}
+    .mini-orb{
+      position:absolute;width:148px;height:148px;right:-22px;bottom:-24px;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%,#ffe4ea 0 12%,#ff7696 13% 42%,#a08fff 43% 68%,#1f1b22 69%);
+      opacity:.95
+    }
+    .utility-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+    .utility-card{
+      min-height:220px;border:0;border-radius:28px;padding:22px;text-align:left;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;
+      transition:.18s ease;position:relative;overflow:hidden
+    }
+    .utility-card:hover{transform:translateY(-3px)}
+    .utility-card small{font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;font-weight:900;opacity:.56}
+    .utility-card h3{font-size:1.65rem;line-height:1;letter-spacing:-.045em;margin:12px 0 8px;max-width:280px}
+    .utility-card p{font-size:.84rem;line-height:1.42;opacity:.68;margin:0;max-width:300px}
+    .utility-card .arrow{font-size:1.25rem;margin-top:16px}
+    .regret-utility{background:#ffcfb7}.company-utility{background:#d6e8f2}.lore-utility{background:#ffe8a7}
+    .lower-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    .lower-card{
+      border-radius:28px;padding:22px;min-height:180px;background:#fff;border:1px solid rgba(34,25,29,.06);
+      display:flex;justify-content:space-between;gap:20px;align-items:flex-end
+    }
+    .lower-card h3{font-size:1.55rem;letter-spacing:-.04em;margin:5px 0}.lower-card p{color:var(--muted);max-width:420px;line-height:1.45;margin:0}
+    .lower-card button{border:0;background:#171516;color:#fff;border-radius:999px;padding:12px 15px;font-weight:850;cursor:pointer;white-space:nowrap}
+    .experience{margin-top:12px;border-radius:30px!important}
+    .footer{padding:18px 4px 0}
+    .sheet-card{border-radius:30px}
+    @media(max-width:1000px){
+      .app-frame{grid-template-columns:1fr}.app-side{display:none}.app-mobile-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+      .mobile-brand{font-weight:900;letter-spacing:-.05em}.dash-grid{grid-template-columns:1fr}.utility-grid{grid-template-columns:1fr 1fr}.lore-utility{grid-column:span 2}
+    }
+    @media(max-width:640px){
+      .shell{width:min(100% - 10px,1440px);padding-top:5px}.app-frame{border-radius:28px;min-height:calc(100vh - 10px)}.app-main{padding:16px}
+      .dash-head{display:block}.day-chip{display:inline-block;margin-top:12px}.dash-head h1{font-size:clamp(3rem,14vw,4.8rem)}
+      .checkin-card,.minimum-hero{min-height:390px;padding:21px}.mood-grid{grid-template-columns:1fr 1fr}.mood-orb{width:165px;height:165px;right:15px;top:55px;opacity:.78}
+      .utility-grid,.lower-grid{grid-template-columns:1fr}.lore-utility{grid-column:auto}.utility-card{min-height:190px}.lower-card{display:block}.lower-card button{margin-top:16px}
+    }
+
   </style>
 </head>
 <body>
   <main class="shell">
+
+    <section class="app-frame">
+      <aside class="app-side">
+        <div class="side-brand">bare minimum club<small>for low-battery humans</small></div>
+        <div class="side-nav">
+          <button class="active">today</button>
+          <button id="sideMinimum">bare minimum</button>
+          <button id="sideCompany">company</button>
+          <button id="sideLore">lorekeeper</button>
+        </div>
+        <div class="side-foot">no fixing.<br>no performance.<br>just enough for today.</div>
+      </aside>
+
+      <div class="app-main">
+        <div class="app-mobile-head">
+          <div class="mobile-brand">bare minimum club</div>
+          <div class="day-chip">low battery mode</div>
+        </div>
+
+        <div class="dash-head">
+          <div>
+            <h1>we’re keeping today small.</h1>
+            <p>Pick what your brain can handle. BMC will do the rest without turning your life into a self-improvement project.</p>
+          </div>
+          <div class="day-chip">no streaks · no guilt</div>
+        </div>
+
+        <div class="dash-grid">
+          <section class="dash-card checkin-card">
+            <div>
+              <div class="tiny">QUICK CHECK-IN</div>
+              <h2>what kind of day is this?</h2>
+              <div class="micro">No need to explain it properly.</div>
+            </div>
+            <div class="mood-orb"></div>
+            <div class="mood-grid">
+              <button class="mood-tile mood" data-mode="rage"><b>everyone is annoying</b><span>outsource it to pixels</span></button>
+              <button class="mood-tile mood" data-mode="soft"><b>weirdly emotional</b><span>zero judgement</span></button>
+              <button class="mood-tile mood" data-mode="blank"><b>brain offline</b><span>no-thoughts mode</span></button>
+              <button class="mood-tile mood" data-mode="panic"><b>distract me now</b><span>emergency nonsense</span></button>
+              <button class="mood-tile mood" data-mode="meh"><b>just existing</b><span>counts, apparently</span></button>
+              <button class="mood-tile mood" data-mode="space"><b>leave me alone nicely</b><span>quiet company</span></button>
+            </div>
+          </section>
+
+          <section class="dash-card minimum-hero">
+            <div>
+              <div class="eyeline">bare minimum button</div>
+              <h2>do the least.</h2>
+              <p>Tell us how cooked you are. You get one tiny task and permission to stop there.</p>
+            </div>
+            <button class="hero-button" id="dashMinimum">give me the minimum →</button>
+            <div class="mini-orb"></div>
+          </section>
+        </div>
+
+        <div class="utility-grid">
+          <button class="utility-card regret-utility" id="dashRegret">
+            <div><small>damage control</small><h3>I may have done something.</h3><p>For texts, posts, purchases and decisions with immediate post-send clarity.</p></div><div class="arrow">↗</div>
+          </button>
+          <button class="utility-card company-utility" id="dashCompany">
+            <div><small>one more person</small><h3>sit here for a bit.</h3><p>No therapy voice. No fixing. Just quiet company or something stupid to say.</p></div><div class="arrow">↗</div>
+          </button>
+          <button class="utility-card lore-utility" id="dashLore">
+            <div><small>lorekeeper</small><h3>leave it with me.</h3><p>Your second brain for people, preferences, little promises, and patterns worth remembering.</p></div><div class="arrow">↗</div>
+          </button>
+        </div>
+
+        <div class="lower-grid">
+          <section class="lower-card">
+            <div><div class="tiny">CHARACTER DEVELOPMENT</div><h3>wait… that counted.</h3><p>Keep tiny receipts that you’re not exactly the same person you were.</p></div>
+            <button id="dashDev">log a tiny win</button>
+          </section>
+          <section class="lower-card">
+            <div><div class="tiny">YOU HAD TO BE THERE</div><h3>save the dumb little moment.</h3><p>The stuff that is too small to post and too good to lose.</p></div>
+            <button id="dashMemory">keep one</button>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <header class="topbar">
       <div class="brand">bare minimum club</div>
       <div class="pill tiny">a softer place to be a person</div>
@@ -563,6 +742,17 @@
       experience.classList.add("active");
       experience.scrollIntoView({behavior:"smooth",block:"start"});
     }
+
+
+    document.getElementById("dashMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("dashRegret").onclick=()=>openSheet("regretSheet");
+    document.getElementById("dashCompany").onclick=()=>{renderTinyMemories();openSheet("ompSheet")};
+    document.getElementById("dashLore").onclick=()=>{renderLore();openSheet("loreSheet")};
+    document.getElementById("dashDev").onclick=()=>{renderDevMoments();openSheet("devSheet")};
+    document.getElementById("dashMemory").onclick=()=>{renderTinyMemories();openSheet("ompSheet")};
+    document.getElementById("sideMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("sideCompany").onclick=()=>{renderTinyMemories();openSheet("ompSheet")};
+    document.getElementById("sideLore").onclick=()=>{renderLore();openSheet("loreSheet")};
 
     const minimumTasks = {
       0:[
