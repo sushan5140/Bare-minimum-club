@@ -169,12 +169,191 @@
       .sheet-card{width:min(760px,calc(100vw - 120px));border-radius:30px;max-height:82dvh;padding:26px}
     }
 
+
+    .desktop-app{display:none}
+    @media(min-width:980px){
+      body{padding:0;background:#d7d0ca}
+      .phone{width:100%;max-width:none;min-height:100dvh;border-radius:0;display:block;box-shadow:none;background:var(--bg)}
+      .phone>.status-pad,.phone>.top,.phone>main,.phone>.nav{display:none!important}
+      .desktop-app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100dvh}
+      .desktop-rail{background:#171617;color:#fff;padding:28px 20px;display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:0;height:100dvh}
+      .desktop-brand{font-weight:950;letter-spacing:-.055em;font-size:1.12rem}.desktop-brand span{display:block;color:rgba(255,255,255,.38);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;margin-top:6px}
+      .desktop-nav{display:grid;gap:6px;margin-top:36px}.desktop-nav button{border:0;background:transparent;color:rgba(255,255,255,.58);text-align:left;padding:13px;border-radius:14px;font-weight:800;cursor:pointer}.desktop-nav button span{display:inline-block;width:28px}.desktop-nav button.active,.desktop-nav button:hover{background:rgba(255,255,255,.09);color:#fff}
+      .desktop-profile{display:flex;gap:10px;align-items:center}.desktop-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(145deg,var(--pink),var(--violet))}.desktop-profile b{display:block;font-size:.78rem}.desktop-profile span{display:block;color:rgba(255,255,255,.38);font-size:.65rem;margin-top:2px}
+      .desktop-content{padding:26px 32px 48px;min-width:0}
+      .desktop-topbar{display:flex;justify-content:space-between;align-items:center;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:28px}.desktop-greeting{font-weight:900;font-size:1.12rem;letter-spacing:-.03em;margin-top:3px}.desktop-top-actions{display:flex;gap:9px;align-items:center}.desktop-quiet,.day-chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;font-size:.74rem;font-weight:850}
+      .desktop-screen{display:none}.desktop-screen.active{display:block}
+      .desktop-page-head{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:30px;align-items:end;margin-bottom:24px}.desktop-page-head h1{font-size:clamp(4.1rem,7vw,7rem);max-width:860px;margin:7px 0 0}.desktop-page-head>p{color:var(--muted);line-height:1.55;padding-bottom:8px}
+      .desktop-card{border-radius:30px;padding:24px;border:1px solid rgba(31,24,27,.06);background:#fff;min-width:0}.desktop-card h2{font-size:2rem}.desktop-card h3{font-size:1.6rem}.desktop-card p{color:var(--muted);line-height:1.5}
+      .desktop-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.desktop-card-head>span{font-size:.72rem;color:var(--muted)}
+      .desktop-today-grid{display:grid;grid-template-columns:1.35fr .65fr;grid-template-areas:"check minimum" "regret company";gap:12px}
+      .desktop-checkin{grid-area:check;background:#ded5ff;min-height:410px}.desktop-minimum{grid-area:minimum;background:#171617;color:#fff;min-height:410px;display:flex;flex-direction:column;justify-content:space-between}.desktop-minimum h2{font-size:3.1rem;line-height:.94;letter-spacing:-.06em;max-width:430px;margin:10px 0}.desktop-minimum p{color:rgba(255,255,255,.58);max-width:360px}
+      .desktop-regret{grid-area:regret;background:#ffd2bd}.desktop-company{grid-area:company;background:#d7e9f2}.desktop-regret,.desktop-company{min-height:190px}
+      .desktop-moods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.desktop-mood{border:0;border-radius:18px;background:rgba(255,255,255,.55);padding:16px;text-align:left;min-height:120px;cursor:pointer}.desktop-mood b{display:block;font-size:.95rem}.desktop-mood span{display:block;color:#6c6680;font-size:.75rem;margin-top:6px}
+      .desktop-primary,.desktop-secondary,.desktop-link{border:0;border-radius:999px;padding:13px 16px;font-weight:900;cursor:pointer}.desktop-primary{background:#171617;color:#fff}.desktop-primary.light{background:#fff;color:#171617}.desktop-secondary{background:#efebe7}.desktop-link{background:transparent;padding:0;margin-top:18px;text-decoration:underline;text-underline-offset:4px}
+      .care-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:12px}.care-main{background:#fff}.care-side{background:#ffe7a6;display:flex;flex-direction:column;justify-content:space-between;min-height:420px}.desktop-care-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.desktop-care-chips button,.desktop-memory-types button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 12px;font-weight:800;cursor:pointer}.desktop-care-chips button.active,.desktop-memory-types button.active{background:#171617;color:#fff}
+      .care-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.care-action{border:0;border-radius:20px;padding:18px;text-align:left;min-height:130px;background:#f3efe9;cursor:pointer}.care-action b{display:block}.care-action span{display:block;color:var(--muted);font-size:.78rem;margin-top:5px}.desktop-toggle-row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(31,24,27,.08);padding:15px 0}
+      .memory-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:12px}.memory-capture{background:#ffe8a7}.memory-feed{min-height:500px}.desktop-memory-types{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.desktop-action-row{display:flex;gap:8px;margin-top:10px}.desktop-result{margin-top:12px;padding:14px;border-radius:18px;background:rgba(255,255,255,.55);color:var(--muted);font-size:.82rem}.desktop-feed{display:grid;gap:9px;margin-top:16px}.desktop-feed .memory-item,.desktop-feed .win-item{background:#f6f2ee}
+      .me-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:12px}.arc-card{background:#171617;color:#fff;min-height:360px}.arc-card h2{font-size:3rem;line-height:.95;letter-spacing:-.055em;margin:10px 0}.arc-card p{color:rgba(255,255,255,.58)}.win-capture{min-height:360px}.recent-wins{grid-column:1/-1}
+      .sheet{padding:30px;align-items:center}.sheet-card{width:min(760px,calc(100vw - 360px));border-radius:30px;max-height:80dvh}
+    }
+
   </style>
 </head>
 <body>
   <div class="phone">
     <div class="status-pad"></div>
     <header class="top"><div class="brand">bare minimum club</div><button class="avatar" aria-label="profile"></button></header>
+
+
+    <div class="desktop-app">
+      <aside class="desktop-rail">
+        <div>
+          <div class="desktop-brand">bare minimum club<span>personal low-battery space</span></div>
+          <nav class="desktop-nav">
+            <button class="active" data-dnav="today"><span>◉</span>Today</button>
+            <button data-dnav="care"><span>✦</span>Care</button>
+            <button data-dnav="memory"><span>⌁</span>Memory</button>
+            <button data-dnav="me"><span>◎</span>Me</button>
+          </nav>
+        </div>
+        <div class="desktop-profile">
+          <div class="desktop-avatar"></div>
+          <div><b>your space</b><span>private on this device</span></div>
+        </div>
+      </aside>
+
+      <section class="desktop-content">
+        <header class="desktop-topbar">
+          <div>
+            <div class="eyebrow">bare minimum club</div>
+            <div class="desktop-greeting">one thing at a time.</div>
+          </div>
+          <div class="desktop-top-actions">
+            <button class="desktop-quiet" id="desktopQuiet">quiet mode</button>
+            <div class="day-chip">no streaks · no guilt</div>
+          </div>
+        </header>
+
+        <div class="desktop-screen active" data-dscreen="today">
+          <div class="desktop-page-head">
+            <div><div class="eyebrow">today</div><h1>we're keeping this day small.</h1></div>
+            <p>You don’t need a productive day. You need a survivable one. Start with what’s loudest right now.</p>
+          </div>
+
+          <div class="desktop-today-grid">
+            <section class="desktop-card desktop-checkin">
+              <div class="desktop-card-head"><div><div class="eyebrow">quick check-in</div><h2>how are we arriving?</h2></div><span>tap, don’t explain</span></div>
+              <div class="desktop-moods">
+                <button class="desktop-mood" data-mode="rage"><b>everyone’s annoying</b><span>outsource it to pixels</span></button>
+                <button class="desktop-mood" data-mode="soft"><b>soft for no reason</b><span>zero judgement</span></button>
+                <button class="desktop-mood" data-mode="blank"><b>brain offline</b><span>no-thoughts mode</span></button>
+                <button class="desktop-mood" data-mode="panic"><b>distract me</b><span>emergency nonsense</span></button>
+                <button class="desktop-mood" data-mode="meh"><b>just existing</b><span>counts, apparently</span></button>
+                <button class="desktop-mood" data-mode="space"><b>quiet please</b><span>company without company</span></button>
+              </div>
+            </section>
+
+            <section class="desktop-card desktop-minimum">
+              <div>
+                <div class="eyebrow" style="color:rgba(255,255,255,.48)">bare minimum</div>
+                <h2>what is the least I can possibly do?</h2>
+                <p>One tiny task. Then you are genuinely allowed to stop.</p>
+              </div>
+              <button class="desktop-primary light" id="desktopMinimum">give me the minimum →</button>
+            </section>
+
+            <section class="desktop-card desktop-regret">
+              <div class="eyebrow">damage control</div>
+              <h3>I may have done something.</h3>
+              <p>Texts, posts, purchases and immediate post-send clarity.</p>
+              <button class="desktop-link" id="desktopRegret">open regret button ↗</button>
+            </section>
+
+            <section class="desktop-card desktop-company">
+              <div class="eyebrow">one more person</div>
+              <h3>sit here for a bit.</h3>
+              <p>No fixing. No therapy voice. Just presence.</p>
+              <button class="desktop-link" id="desktopCompany">choose company ↗</button>
+            </section>
+          </div>
+        </div>
+
+        <div class="desktop-screen" data-dscreen="care">
+          <div class="desktop-page-head">
+            <div><div class="eyebrow">care</div><h1>make the body easier to live in.</h1></div>
+            <p>Comfort first. No diagnosis, no optimization dashboard, no pressure to “bounce back.”</p>
+          </div>
+          <div class="care-layout">
+            <section class="desktop-card care-main">
+              <div class="desktop-card-head"><div><div class="eyebrow">what's loud today?</div><h2>pick what applies.</h2></div><span>choose any</span></div>
+              <div class="desktop-care-chips" id="desktopCareChips">
+                <button>cramps</button><button>low energy</button><button>bloated</button><button>irritable</button><button>headache</button><button>need space</button>
+              </div>
+              <div class="care-action-grid">
+                <button class="care-action" id="desktopCareMinimum"><b>bare minimum</b><span>one thing I can manage</span></button>
+                <button class="care-action" id="desktopCareCompany"><b>quiet company</b><span>someone here, no fixing</span></button>
+                <button class="care-action" id="desktopCareMemory"><b>what helped last time?</b><span>pull from memory</span></button>
+                <button class="care-action" id="desktopCareDistract"><b>distract me</b><span>tiny nonsense</span></button>
+              </div>
+            </section>
+            <aside class="desktop-card care-side">
+              <div><div class="eyebrow">monthly context</div><h2>optional, always.</h2><p>Use it only if it helps BMC understand rough monthly days a little better.</p></div>
+              <div class="desktop-toggle-row"><span>monthly boss battle</span><div class="switch" id="desktopCycleToggle"></div></div>
+              <div class="desktop-toggle-row"><span>keep local on device</span><div class="switch on"></div></div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="desktop-screen" data-dscreen="memory">
+          <div class="desktop-page-head">
+            <div><div class="eyebrow">memory</div><h1>your second brain, minus the admin.</h1></div>
+            <p>Throw the thought in. BMC keeps it. Later, the useful thing comes back when you need it.</p>
+          </div>
+          <div class="memory-layout">
+            <section class="desktop-card memory-capture">
+              <div class="eyebrow">lorekeeper</div><h2>what should I remember?</h2>
+              <div class="desktop-memory-types" id="desktopMemoryTypes">
+                <button class="active" data-type="me">me</button><button data-type="people">people</button><button data-type="life">life</button><button data-type="pattern">maybe a pattern</button>
+              </div>
+              <textarea id="desktopMemoryInput" placeholder="e.g. hot shower actually helped last time"></textarea>
+              <div class="desktop-action-row"><button class="desktop-primary" id="desktopSaveMemory">remember this</button><button class="desktop-secondary" id="desktopSurfaceMemory">bring one back</button></div>
+              <div id="desktopMemoryResult" class="desktop-result">No folders. Messy sentence is fine.</div>
+            </section>
+            <section class="desktop-card memory-feed">
+              <div class="desktop-card-head"><div><div class="eyebrow">recent memory</div><h2>things you left here.</h2></div><span>latest 8</span></div>
+              <div class="desktop-feed" id="desktopMemoryList"></div>
+            </section>
+          </div>
+        </div>
+
+        <div class="desktop-screen" data-dscreen="me">
+          <div class="desktop-page-head">
+            <div><div class="eyebrow">me</div><h1>proof that tiny things still counted.</h1></div>
+            <p>No score. No streak. Just a soft record of patterns, wins, and who you’re slowly becoming.</p>
+          </div>
+          <div class="me-layout">
+            <section class="desktop-card arc-card">
+              <div class="eyebrow" style="color:rgba(255,255,255,.48)">current arc</div>
+              <h2 id="desktopArcTitle">season hasn't started yet.</h2>
+              <p id="desktopArcCopy">Log one tiny moment and BMC will start keeping receipts.</p>
+            </section>
+            <section class="desktop-card win-capture">
+              <div class="eyebrow">character development</div><h2>log one tiny thing.</h2>
+              <div class="desktop-memory-types" id="desktopWinTypes">
+                <button class="active" data-win="boundary">chose myself</button><button data-win="brave">did scary thing</button><button data-win="care">took care</button><button data-win="social">showed up</button>
+              </div>
+              <textarea id="desktopWinInput" placeholder="e.g. I said no without writing a thesis"></textarea>
+              <button class="desktop-primary" id="desktopSaveWin">that counted</button>
+            </section>
+            <section class="desktop-card recent-wins">
+              <div class="desktop-card-head"><div><div class="eyebrow">recent receipts</div><h2>small, still real.</h2></div><span>local only</span></div>
+              <div class="desktop-feed" id="desktopWinList"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
 
     <main>
       <section class="screen active" data-screen="today">
@@ -349,6 +528,35 @@
     document.getElementById("saveWin").onclick=()=>{const i=document.getElementById("winInput"),v=i.value.trim();if(!v)return;const a=getWins();a.unshift({text:v,type:winType,at:Date.now()});setWins(a);i.value="";renderWins()};
 
     renderMem();renderWins();
+
+    const dScreens=[...document.querySelectorAll("[data-dscreen]")], dNavs=[...document.querySelectorAll("[data-dnav]")];
+    function dGo(name){dScreens.forEach(s=>s.classList.toggle("active",s.dataset.dscreen===name));dNavs.forEach(n=>n.classList.toggle("active",n.dataset.dnav===name));document.querySelector(".desktop-content").scrollTo({top:0,behavior:"smooth"})}
+    dNavs.forEach(n=>n.onclick=()=>dGo(n.dataset.dnav));
+    document.getElementById("desktopMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("desktopRegret").onclick=()=>openSheet("regretSheet");
+    document.getElementById("desktopCompany").onclick=()=>openSheet("companySheet");
+    document.getElementById("desktopCareMinimum").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("desktopCareCompany").onclick=()=>openSheet("companySheet");
+    document.getElementById("desktopCareDistract").onclick=()=>openSheet("distractSheet");
+    document.getElementById("desktopCareMemory").onclick=()=>dGo("memory");
+    document.getElementById("desktopQuiet").onclick=()=>openSheet("companySheet");
+    document.querySelectorAll(".desktop-mood").forEach(b=>b.onclick=()=>openSheet(b.dataset.mode==="panic"?"distractSheet":b.dataset.mode==="space"?"companySheet":"minimumSheet"));
+    document.querySelectorAll("#desktopCareChips button").forEach(b=>b.onclick=()=>b.classList.toggle("active"));
+    document.getElementById("desktopCycleToggle").onclick=e=>{e.currentTarget.classList.toggle("on");document.getElementById("cycleToggle").classList.toggle("on",e.currentTarget.classList.contains("on"));localStorage.setItem("bmc_v2_cycle",e.currentTarget.classList.contains("on")?"1":"0")};
+    if(localStorage.getItem("bmc_v2_cycle")==="1")document.getElementById("desktopCycleToggle").classList.add("on");
+
+    let dMemType="me";
+    document.querySelectorAll("#desktopMemoryTypes button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#desktopMemoryTypes button").forEach(x=>x.classList.remove("active"));b.classList.add("active");dMemType=b.dataset.type});
+    function renderDesktopMem(){const a=getMem(),el=document.getElementById("desktopMemoryList");el.innerHTML=a.slice(0,8).map(m=>"<div class='memory-item'><div class='meta'>"+m.type+"</div>"+esc(m.text)+"</div>").join("")||"<div class='muted'>Nothing here yet.</div>"}
+    document.getElementById("desktopSaveMemory").onclick=()=>{const i=document.getElementById("desktopMemoryInput"),v=i.value.trim();if(!v)return;const a=getMem();a.unshift({text:v,type:dMemType,at:Date.now()});setMem(a);i.value="";document.getElementById("desktopMemoryResult").textContent="I'll remember that.";renderMem();renderDesktopMem()};
+    document.getElementById("desktopSurfaceMemory").onclick=()=>{const a=getMem();document.getElementById("desktopMemoryResult").textContent=a.length?a[Math.floor(Math.random()*a.length)].text:"Nothing stored yet."};
+
+    let dWinType="boundary";
+    document.querySelectorAll("#desktopWinTypes button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#desktopWinTypes button").forEach(x=>x.classList.remove("active"));b.classList.add("active");dWinType=b.dataset.win});
+    function renderDesktopWins(){const a=getWins(),list=document.getElementById("desktopWinList");list.innerHTML=a.slice(0,8).map(w=>"<div class='win-item'><div class='meta'>"+arcNames[w.type]+"</div>"+esc(w.text)+"</div>").join("")||"<div class='muted'>No receipts yet.</div>";if(a.length){const c={};a.forEach(w=>c[w.type]=(c[w.type]||0)+1);const t=Object.keys(c).sort((x,y)=>c[y]-c[x])[0];document.getElementById("desktopArcTitle").textContent=arcNames[t];document.getElementById("desktopArcCopy").textContent=a.length+" tiny moment"+(a.length===1?"":"s")+" logged this season."}}
+    document.getElementById("desktopSaveWin").onclick=()=>{const i=document.getElementById("desktopWinInput"),v=i.value.trim();if(!v)return;const a=getWins();a.unshift({text:v,type:dWinType,at:Date.now()});setWins(a);i.value="";renderWins();renderDesktopWins()};
+    renderDesktopMem();renderDesktopWins();
+
   </script>
 </body>
 </html>
