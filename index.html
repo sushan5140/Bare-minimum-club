@@ -126,6 +126,25 @@
     .regret-type.active{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
     .verdicts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
     .verdict{padding:13px 8px;border-radius:16px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:800}
+    .dev-zone{margin-top:14px}
+    .dev-card{
+      width:100%;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#fff,#fff8fa);
+      padding:24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;gap:18px;align-items:center;
+      box-shadow:0 12px 32px rgba(76,47,57,.06);transition:.18s ease
+    }
+    .dev-card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(76,47,57,.1)}
+    .dev-card h3{margin:7px 0 6px;font-size:1.35rem;letter-spacing:-.035em}
+    .dev-card p{margin:0;color:var(--muted);line-height:1.45}
+    .dev-arrow{font-size:1.5rem}
+    .moment-input{
+      width:100%;min-height:96px;resize:vertical;border:1px solid var(--line);border-radius:18px;background:#fff;
+      padding:14px 15px;color:var(--ink);font:inherit;line-height:1.45
+    }
+    .moment-list{display:grid;gap:10px;margin-top:16px}
+    .moment-item{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px 15px}
+    .moment-meta{font-size:.76rem;color:var(--muted);font-weight:800;letter-spacing:.05em;margin-bottom:5px}
+    .arc-badge{display:inline-block;margin-top:8px;border-radius:999px;background:#fff3f5;padding:7px 10px;font-size:.78rem;font-weight:850}
+    .season-box{margin-top:16px;padding:16px;border-radius:18px;background:#fff7e8;border:1px solid #f1e5c5}
     .footer{
       margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.83rem
     }
@@ -246,6 +265,51 @@
         </div>
         <button class="big-action" id="assessBtn">okay tell me how bad</button>
         <div class="result-box" id="regretResult"><span class="tiny">No lectures. The decision has already left the building.</span></div>
+      </div>
+    </div>
+
+    <section class="dev-zone">
+      <button class="dev-card" id="devLaunch">
+        <div>
+          <div class="tiny">BATCH 2 · CHARACTER DEVELOPMENT</div>
+          <h3>wait… that actually counted.</h3>
+          <p>Log the tiny moments nobody puts on a habit tracker. BMC keeps the arc, not the pressure.</p>
+        </div>
+        <div class="dev-arrow">↗</div>
+      </button>
+    </section>
+
+    <div class="sheet" id="devSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">CHARACTER DEVELOPMENT TRACKER</div><h2>what changed, even a little?</h2></div>
+          <button class="sheet-close" data-close="devSheet">✕</button>
+        </div>
+
+        <div class="choice-row" id="devTypes">
+          <button class="chip active" data-devtype="boundary">said no / chose myself</button>
+          <button class="chip" data-devtype="brave">did something scary</button>
+          <button class="chip" data-devtype="care">took care of myself</button>
+          <button class="chip" data-devtype="social">showed up for someone</button>
+          <button class="chip" data-devtype="other">random plot movement</button>
+        </div>
+
+        <textarea class="moment-input" id="devInput" maxlength="180" placeholder="e.g. replied without rewriting the message 12 times"></textarea>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <button class="big-action" id="saveDev">log the moment</button>
+          <button class="chip" id="clearDev">clear local history</button>
+        </div>
+
+        <div class="result-box" id="devResult">
+          <span class="tiny">No streaks. No score. Just receipts that you're not exactly the same person you were.</span>
+        </div>
+
+        <div class="season-box" id="seasonBox">
+          <strong id="seasonTitle">season currently has no episodes.</strong>
+          <div class="tiny" id="seasonSub" style="margin-top:5px">log one tiny win and we'll start the lore.</div>
+        </div>
+
+        <div class="moment-list" id="momentList"></div>
       </div>
     </div>
 
@@ -406,6 +470,7 @@
 
     document.getElementById("bareMinimumLaunch").onclick=()=>openSheet("minimumSheet");
     document.getElementById("regretLaunch").onclick=()=>openSheet("regretSheet");
+    document.getElementById("devLaunch").onclick=()=>{renderDevMoments();openSheet("devSheet")};
     document.querySelectorAll(".sheet-close").forEach(btn=>btn.onclick=()=>closeSheet(btn.dataset.close));
     document.querySelectorAll(".sheet").forEach(sheet=>sheet.addEventListener("click",e=>{if(e.target===sheet) closeSheet(sheet.id)}));
 
@@ -421,6 +486,76 @@
       const list=minimumTasks[batteryLevel];
       const task=list[Math.floor(Math.random()*list.length)];
       document.getElementById("minimumResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🫡</div><strong>'+task+'</strong><div class="tiny" style="margin-top:10px">doing more is optional. genuinely.</div></div>';
+    };
+
+    const devArcLabels = {
+      boundary:["BOUNDARIES ARC","chose yourself without filing a 14-page explanation"],
+      brave:["COURAGE ARC","did the thing while still being scared, which annoyingly counts"],
+      care:["SELF-CARE ARC","basic maintenance but make it character development"],
+      social:["SOFT HUMAN ARC","showed up for someone. suspiciously decent behavior"],
+      other:["PLOT MOVEMENT","unclear genre. definite development."]
+    };
+
+    let devType="boundary";
+    document.querySelectorAll("#devTypes .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#devTypes .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        devType=btn.dataset.devtype;
+      };
+    });
+
+    function getDevMoments(){
+      try{return JSON.parse(localStorage.getItem("bmc_dev_moments")||"[]")}catch(e){return[]}
+    }
+    function saveDevMoments(items){
+      localStorage.setItem("bmc_dev_moments",JSON.stringify(items.slice(0,30)));
+    }
+    function renderDevMoments(){
+      const items=getDevMoments();
+      const list=document.getElementById("momentList");
+      const seasonTitle=document.getElementById("seasonTitle");
+      const seasonSub=document.getElementById("seasonSub");
+      list.innerHTML="";
+      if(!items.length){
+        seasonTitle.textContent="season currently has no episodes.";
+        seasonSub.textContent="log one tiny win and we'll start the lore.";
+        return;
+      }
+      seasonTitle.textContent=items.length+" tiny moment"+(items.length===1?"":"s")+" survived this season.";
+      const counts={};
+      items.forEach(x=>counts[x.type]=(counts[x.type]||0)+1);
+      const top=Object.keys(counts).sort((a,b)=>counts[b]-counts[a])[0];
+      seasonSub.textContent="current recurring arc: "+devArcLabels[top][0].toLowerCase()+".";
+      items.slice(0,6).forEach(item=>{
+        const el=document.createElement("div");
+        el.className="moment-item";
+        el.innerHTML='<div class="moment-meta">'+new Date(item.at).toLocaleDateString(undefined,{month:"short",day:"numeric"})+'</div><div>'+escapeHtml(item.text)+'</div><span class="arc-badge">'+devArcLabels[item.type][0]+'</span>';
+        list.appendChild(el);
+      });
+    }
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+    }
+    document.getElementById("saveDev").onclick=()=>{
+      const input=document.getElementById("devInput");
+      const text=input.value.trim();
+      if(!text){
+        document.getElementById("devResult").innerHTML='<div><strong>bro give me one sentence 😭</strong><div class="tiny" style="margin-top:8px">even "I got out of bed" counts.</div></div>';
+        return;
+      }
+      const items=getDevMoments();
+      items.unshift({text,type:devType,at:new Date().toISOString()});
+      saveDevMoments(items);
+      const arc=devArcLabels[devType];
+      document.getElementById("devResult").innerHTML='<div><div style="font-size:2.5rem;margin-bottom:8px">🎬</div><strong>CHARACTER DEVELOPMENT DETECTED.</strong><div style="margin-top:8px;color:var(--muted)">'+arc[1]+'.</div><span class="arc-badge">'+arc[0]+'</span></div>';
+      input.value="";
+      renderDevMoments();
+    };
+    document.getElementById("clearDev").onclick=()=>{
+      localStorage.removeItem("bmc_dev_moments");
+      document.getElementById("devResult").innerHTML='<div><strong>history cleared.</strong><div class="tiny" style="margin-top:8px">the development still happened though. inconvenient.</div></div>';
+      renderDevMoments();
     };
 
     let regretType="text";
