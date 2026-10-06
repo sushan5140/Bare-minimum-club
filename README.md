@@ -41,8 +41,13 @@ Planned layers:
 Development branch: `feature/bmc-batch-1`
 
 Implemented without deploying:
-- **Bare Minimum Button** — battery-level selector with intentionally tiny randomized tasks
-- **Regret Button** — decision-category selector, dramatic damage assessment, and playful verdict split
+- **Bare Minimum Button** — simplified to three human battery states with intentionally tiny randomized tasks
+- **Regret Button** — simplified to one human verdict + one next-step response; fake percentage dashboard removed
+
+Current product focus:
+- **Core:** Bare Minimum Button, Regret Button, Character Development Tracker, One More Person × You Had To Be There
+- **Later:** Bro Hold This, Lorekeeper
+- **Dropped from BMC core:** Random Cousin, Parallel Universe Group Chat
 
 The default `main` branch remains untouched until review.
 
