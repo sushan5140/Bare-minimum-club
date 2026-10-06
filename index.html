@@ -89,6 +89,43 @@
       border:0;border-radius:999px;background:var(--ink);color:#fff;padding:16px 22px;
       font-weight:850;cursor:pointer;box-shadow:0 12px 30px rgba(36,31,32,.16)
     }
+    .feature-zone{margin-top:24px}
+    .feature-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:16px}
+    .feature-head h2{margin:0;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.06em;line-height:.95}
+    .feature-head p{margin:0;color:var(--muted);max-width:460px;line-height:1.45}
+    .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .feature-card{
+      border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.82);
+      padding:24px;text-align:left;cursor:pointer;box-shadow:0 12px 32px rgba(76,47,57,.07);
+      transition:.18s ease
+    }
+    .feature-card:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(76,47,57,.11)}
+    .feature-card .kicker{font-size:.76rem;font-weight:900;letter-spacing:.12em;color:var(--muted)}
+    .feature-card h3{font-size:1.45rem;margin:10px 0 8px;letter-spacing:-.035em}
+    .feature-card p{margin:0;color:var(--muted);line-height:1.5}
+    .feature-card .launch{display:inline-block;margin-top:18px;font-weight:850}
+    .sheet{
+      position:fixed;inset:0;background:rgba(36,31,32,.36);backdrop-filter:blur(8px);
+      display:none;align-items:flex-end;justify-content:center;padding:18px;z-index:20
+    }
+    .sheet.active{display:flex}
+    .sheet-card{
+      width:min(680px,100%);max-height:88vh;overflow:auto;background:#fffdfd;border:1px solid var(--line);
+      border-radius:30px;padding:26px;box-shadow:0 30px 90px rgba(36,31,32,.22)
+    }
+    .sheet-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+    .sheet h2{margin:0;font-size:clamp(2rem,7vw,3.5rem);line-height:.95;letter-spacing:-.06em}
+    .sheet-close{border:1px solid var(--line);background:#fff;border-radius:999px;width:40px;height:40px;cursor:pointer}
+    .choice-row{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 13px;cursor:pointer}
+    .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .result-box{margin-top:18px;border-radius:22px;background:#fff3f5;padding:22px;min-height:120px;display:flex;align-items:center;justify-content:center;text-align:center}
+    .result-box strong{font-size:1.25rem;line-height:1.35}
+    .regret-types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+    .regret-type{border:1px solid var(--line);background:#fff;border-radius:18px;padding:14px;text-align:left;cursor:pointer;font-weight:800}
+    .regret-type.active{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+    .verdicts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+    .verdict{padding:13px 8px;border-radius:16px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:800}
     .footer{
       margin-top:26px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:.83rem
     }
@@ -98,9 +135,12 @@
       .panel{padding:24px}
     }
     @media(max-width:560px){
-      .moods,.cards{grid-template-columns:1fr}
-      .topbar{align-items:flex-start}
+      .moods,.cards,.feature-grid,.regret-types{grid-template-columns:1fr}
+      .verdicts{grid-template-columns:1fr}
+      .topbar,.feature-head{align-items:flex-start;flex-direction:column}
       h1{font-size:3.55rem}
+      .sheet{padding:10px}
+      .sheet-card{border-radius:24px;padding:20px}
     }
   </style>
 </head>
@@ -151,6 +191,70 @@
         </div>
       </div>
     </section>
+
+    <section class="feature-zone panel">
+      <div class="feature-head">
+        <div>
+          <div class="tiny">NEW · BATCH 1</div>
+          <h2>two buttons for when you're cooked.</h2>
+        </div>
+        <p>No dashboard. No streak guilt. Just one tiny thing to do — or one dramatic place to panic after you've already done the thing.</p>
+      </div>
+      <div class="feature-grid">
+        <button class="feature-card" id="bareMinimumLaunch">
+          <div class="kicker">BARE MINIMUM BUTTON</div>
+          <h3>what is the least I can possibly do?</h3>
+          <p>Pick your current battery level. BMC gives you one embarrassingly achievable task.</p>
+          <span class="launch">give me the minimum →</span>
+        </button>
+        <button class="feature-card" id="regretLaunch">
+          <div class="kicker">REGRET BUTTON</div>
+          <h3>I may have done something 💀</h3>
+          <p>For texts, posts, purchases and decisions that seemed smarter twelve seconds ago.</p>
+          <span class="launch">open damage control →</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="sheet" id="minimumSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">BARE MINIMUM BUTTON</div><h2>how cooked are we?</h2></div>
+          <button class="sheet-close" data-close="minimumSheet">✕</button>
+        </div>
+        <div class="choice-row" id="batteryChoices">
+          <button class="chip active" data-level="0">0% · horizontal</button>
+          <button class="chip" data-level="1">20% · barely online</button>
+          <button class="chip" data-level="2">40% · can negotiate</button>
+          <button class="chip" data-level="3">60% · suspiciously functional</button>
+        </div>
+        <button class="big-action" id="minimumBtn">give me the bare minimum</button>
+        <div class="result-box" id="minimumResult"><span class="tiny">Your assignment will be aggressively achievable.</span></div>
+      </div>
+    </div>
+
+    <div class="sheet" id="regretSheet" aria-hidden="true">
+      <div class="sheet-card">
+        <div class="sheet-top">
+          <div><div class="tiny">REGRET BUTTON</div><h2>okay. what did you do?</h2></div>
+          <button class="sheet-close" data-close="regretSheet">✕</button>
+        </div>
+        <div class="regret-types" id="regretTypes">
+          <button class="regret-type active" data-type="text">📱 texted someone</button>
+          <button class="regret-type" data-type="post">📸 posted something</button>
+          <button class="regret-type" data-type="buy">🛍️ bought something</button>
+          <button class="regret-type" data-type="said">🗣️ said something</button>
+          <button class="regret-type" data-type="other">🫠 other disaster</button>
+        </div>
+        <button class="big-action" id="assessBtn">ASSESS THE DAMAGE</button>
+        <div class="result-box" id="regretResult"><span class="tiny">No lectures. The decision has already left the building.</span></div>
+        <div class="verdicts" id="verdicts" style="display:none">
+          <div class="verdict">COOKED<br><span id="cookedPct">—</span></div>
+          <div class="verdict">LET HER COOK<br><span id="cookPct">—</span></div>
+          <div class="verdict">HISTORIC MOVE<br><span id="historicPct">—</span></div>
+        </div>
+      </div>
+    </div>
 
     <footer class="footer">
       <span>v0.1 · distraction first</span>
@@ -246,6 +350,112 @@
       experience.classList.add("active");
       experience.scrollIntoView({behavior:"smooth",block:"start"});
     }
+
+    const minimumTasks = {
+      0:[
+        "take three sips of water. yes, three. we're not ambitious here.",
+        "change into the comfiest thing you own. productivity ends there.",
+        "plug in your phone. congratulations, something in this house is recovering.",
+        "close one tab. not all of them. we're not doing miracles."
+      ],
+      1:[
+        "wash your face OR brush your teeth. choose your fighter.",
+        "eat literally one thing with nutritional value. a banana can carry this team.",
+        "reply to exactly one message that has been haunting your notifications.",
+        "put one thing back where it belongs. one. stop after that."
+      ],
+      2:[
+        "take a five-minute shower. concert performance optional.",
+        "do the smallest visible part of the task you've been avoiding, then leave.",
+        "make your bed badly. corners are capitalist propaganda.",
+        "walk around for four minutes and return dramatically."
+      ],
+      3:[
+        "do one 10-minute life-maintenance task, then immediately cash out.",
+        "prep one thing that tomorrow-you will notice and appreciate.",
+        "clear one tiny surface. do not accidentally clean the whole room.",
+        "send the message you've been rehearsing in your head, if it's safe to send."
+      ]
+    };
+
+    const regretLines = {
+      text:[
+        "message has entered the atmosphere. staring at 'delivered' will not improve the weather.",
+        "the text exists now. dignity remains approximately intact.",
+        "official advice: do NOT send the follow-up explaining the first message."
+      ],
+      post:[
+        "the story is live. everyone is probably much less focused on it than your brain claims.",
+        "posted. civilization continues.",
+        "you are currently experiencing post-post clarity."
+      ],
+      buy:[
+        "financial character development detected.",
+        "purchase complete. we will call it a plot device until the return window closes.",
+        "bank account has seen worse. probably."
+      ],
+      said:[
+        "sentence cannot be recalled from production.",
+        "congratulations, you have discovered verbal send-without-undo.",
+        "there is a strong chance everyone else already moved on while you're replaying it in 4K."
+      ],
+      other:[
+        "the council has classified this as: we'll survive.",
+        "interesting. deeply interesting decision.",
+        "event logged under 'seemed reasonable at the time.'"
+      ]
+    };
+
+    function openSheet(id){
+      const el=document.getElementById(id);
+      el.classList.add("active");
+      el.setAttribute("aria-hidden","false");
+    }
+    function closeSheet(id){
+      const el=document.getElementById(id);
+      el.classList.remove("active");
+      el.setAttribute("aria-hidden","true");
+    }
+
+    document.getElementById("bareMinimumLaunch").onclick=()=>openSheet("minimumSheet");
+    document.getElementById("regretLaunch").onclick=()=>openSheet("regretSheet");
+    document.querySelectorAll(".sheet-close").forEach(btn=>btn.onclick=()=>closeSheet(btn.dataset.close));
+    document.querySelectorAll(".sheet").forEach(sheet=>sheet.addEventListener("click",e=>{if(e.target===sheet) closeSheet(sheet.id)}));
+
+    let batteryLevel="0";
+    document.querySelectorAll("#batteryChoices .chip").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#batteryChoices .chip").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        batteryLevel=btn.dataset.level;
+      };
+    });
+    document.getElementById("minimumBtn").onclick=()=>{
+      const list=minimumTasks[batteryLevel];
+      const task=list[Math.floor(Math.random()*list.length)];
+      document.getElementById("minimumResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🫡</div><strong>'+task+'</strong><div class="tiny" style="margin-top:10px">doing more is optional. genuinely.</div></div>';
+    };
+
+    let regretType="text";
+    document.querySelectorAll("#regretTypes .regret-type").forEach(btn=>{
+      btn.onclick=()=>{
+        document.querySelectorAll("#regretTypes .regret-type").forEach(x=>x.classList.remove("active"));
+        btn.classList.add("active");
+        regretType=btn.dataset.type;
+      };
+    });
+    document.getElementById("assessBtn").onclick=()=>{
+      const lines=regretLines[regretType];
+      const line=lines[Math.floor(Math.random()*lines.length)];
+      const cooked=Math.floor(18+Math.random()*43);
+      const historic=Math.floor(8+Math.random()*24);
+      const cook=100-cooked-historic;
+      document.getElementById("regretResult").innerHTML='<div><div style="font-size:2.7rem;margin-bottom:8px">🚨</div><strong>DECISION HAS BEEN MADE.</strong><div style="margin-top:10px;color:var(--muted)">'+line+'</div></div>';
+      document.getElementById("cookedPct").textContent=cooked+"%";
+      document.getElementById("cookPct").textContent=cook+"%";
+      document.getElementById("historicPct").textContent=historic+"%";
+      document.getElementById("verdicts").style.display="grid";
+    };
 
     function runMini(mode,index,name){
       if(name.includes("destroy")){
