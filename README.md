@@ -73,6 +73,20 @@ Implemented:
 - local-only browser storage
 - no feeds, likes, followers, or social pressure
 
+### Batch 4: Lorekeeper — second brain
+
+Development branch: `feature/bmc-batch-4-lorekeeper`
+
+Implemented:
+- a lightweight "remember this" capture flow
+- four memory buckets: Me, People, Life, Maybe a Pattern
+- random gentle resurfacing of stored memories
+- cautious wording for patterns ("could be coincidence")
+- local-only browser storage for the MVP
+- no folders, dashboards, or clinical-style profiling
+
+The long-term direction is **remember → connect → resurface at the right moment**.
+
 The default `main` branch remains untouched until review.
 
 ## v0.1
