@@ -198,6 +198,44 @@
       .sheet{padding:30px;align-items:center}.sheet-card{width:min(760px,calc(100vw - 360px));border-radius:30px;max-height:80dvh}
     }
 
+
+    /* Interactive widget layer */
+    .widget-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .widget{
+      border-radius:24px;padding:18px;background:#fff;border:1px solid var(--line);min-height:150px;
+      display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden
+    }
+    .widget .value{font-size:2.25rem;font-weight:950;letter-spacing:-.06em;line-height:1}
+    .widget .label{font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .widget .hint{font-size:.76rem;color:var(--muted);line-height:1.4}
+    .energy-dots{display:flex;gap:7px;margin-top:14px}
+    .energy-dot{width:14px;height:14px;border-radius:50%;background:#e1dbd7;cursor:pointer;transition:.18s}
+    .energy-dot.active{background:#171617;transform:scale(1.18)}
+    .tiny-meter{height:8px;border-radius:999px;background:#ece7e3;overflow:hidden;margin-top:12px}
+    .tiny-meter span{display:block;height:100%;width:0;background:#171617;border-radius:999px;transition:.28s ease}
+    .widget-action{border:0;background:transparent;padding:0;text-align:left;font-weight:900;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+    .memory-widget{background:#fff0b8}
+    .care-widget{background:#dcebf3}
+    .arc-widget{background:#ded4ff}
+    .floating-toast{
+      position:fixed;right:24px;bottom:24px;z-index:80;background:#171617;color:#fff;border-radius:18px;
+      padding:13px 16px;box-shadow:0 18px 50px rgba(25,18,21,.25);font-size:.8rem;font-weight:800;
+      opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s ease
+    }
+    .floating-toast.show{opacity:1;transform:none}
+    .quick-dial{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .quick-dial button{border:1px solid var(--line);background:rgba(255,255,255,.72);border-radius:999px;padding:9px 11px;font-weight:800;cursor:pointer}
+    .quick-dial button.active{background:#171617;color:#fff}
+    .expandable{max-height:0;overflow:hidden;opacity:0;transition:max-height .32s ease,opacity .22s ease,margin .22s ease}
+    .expandable.open{max-height:280px;opacity:1;margin-top:12px}
+    .breath-widget{display:flex;align-items:center;gap:14px}
+    .breath-orb{width:58px;height:58px;border-radius:50%;background:linear-gradient(145deg,#ff9db4,#c9b8ff);animation:breathe 4s ease-in-out infinite;box-shadow:0 10px 24px rgba(90,73,120,.18)}
+    @keyframes breathe{0%,100%{transform:scale(.84)}50%{transform:scale(1.08)}}
+    @media(max-width:979px){
+      .widget-strip{grid-template-columns:1fr 1fr}.widget-strip .widget:last-child{grid-column:1/-1}
+      .floating-toast{right:14px;bottom:92px}
+    }
+
   </style>
 </head>
 <body>
@@ -239,6 +277,29 @@
           <div class="desktop-page-head">
             <div><div class="eyebrow">today</div><h1>we're keeping this day small.</h1></div>
             <p>You don’t need a productive day. You need a survivable one. Start with what’s loudest right now.</p>
+          </div>
+
+
+          <div class="widget-strip">
+            <section class="widget">
+              <div><div class="label">energy right now</div><div class="value" id="energyValue">2/5</div></div>
+              <div>
+                <div class="energy-dots" id="energyDots">
+                  <span class="energy-dot active" data-energy="1"></span><span class="energy-dot active" data-energy="2"></span><span class="energy-dot" data-energy="3"></span><span class="energy-dot" data-energy="4"></span><span class="energy-dot" data-energy="5"></span>
+                </div>
+                <div class="hint" style="margin-top:10px">BMC can use this to keep suggestions realistic.</div>
+              </div>
+            </section>
+
+            <section class="widget memory-widget">
+              <div><div class="label">memory resurfacer</div><div class="value" style="font-size:1.4rem" id="memoryWidgetText">nothing surfaced yet</div></div>
+              <button class="widget-action" id="memoryWidgetBtn">bring one back ↗</button>
+            </section>
+
+            <section class="widget arc-widget">
+              <div><div class="label">this week's tiny arc</div><div class="value" id="arcWidgetValue">0</div></div>
+              <div><div class="tiny-meter"><span id="arcMeter"></span></div><div class="hint" id="arcWidgetHint" style="margin-top:8px">log a tiny win and this starts moving.</div></div>
+            </section>
           </div>
 
           <div class="desktop-today-grid">
@@ -290,6 +351,22 @@
               <div class="desktop-care-chips" id="desktopCareChips">
                 <button>cramps</button><button>low energy</button><button>bloated</button><button>irritable</button><button>headache</button><button>need space</button>
               </div>
+
+              <div class="widget care-widget" style="margin-top:14px">
+                <div class="breath-widget">
+                  <div class="breath-orb"></div>
+                  <div><div class="label">30-second reset</div><h3 style="margin-top:5px">breathe with the blob</h3><p class="hint" style="margin-top:5px">Not wellness homework. Just thirty seconds of less noise.</p></div>
+                </div>
+                <div class="quick-dial" id="careQuickDial">
+                  <button data-carelevel="gentle">gentle</button>
+                  <button data-carelevel="silent">silent</button>
+                  <button data-carelevel="distract">distract</button>
+                </div>
+                <div class="expandable" id="careExpandable">
+                  <div class="desktop-result" id="careDynamicResult">Pick a mode above.</div>
+                </div>
+              </div>
+
               <div class="care-action-grid">
                 <button class="care-action" id="desktopCareMinimum"><b>bare minimum</b><span>one thing I can manage</span></button>
                 <button class="care-action" id="desktopCareCompany"><b>quiet company</b><span>someone here, no fixing</span></button>
@@ -557,6 +634,58 @@
     document.getElementById("desktopSaveWin").onclick=()=>{const i=document.getElementById("desktopWinInput"),v=i.value.trim();if(!v)return;const a=getWins();a.unshift({text:v,type:dWinType,at:Date.now()});setWins(a);i.value="";renderWins();renderDesktopWins()};
     renderDesktopMem();renderDesktopWins();
 
+    function toast(msg){
+      const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
+      clearTimeout(window.__bmcToast);window.__bmcToast=setTimeout(()=>t.classList.remove("show"),1800);
+    }
+
+    let energy=parseInt(localStorage.getItem("bmc_v2_energy")||"2",10);
+    function renderEnergy(){
+      document.getElementById("energyValue").textContent=energy+"/5";
+      document.querySelectorAll("#energyDots .energy-dot").forEach(d=>d.classList.toggle("active",parseInt(d.dataset.energy,10)<=energy));
+    }
+    document.querySelectorAll("#energyDots .energy-dot").forEach(d=>d.onclick=()=>{
+      energy=parseInt(d.dataset.energy,10);localStorage.setItem("bmc_v2_energy",String(energy));renderEnergy();toast("energy set to "+energy+"/5");
+    });
+
+    function refreshMemoryWidget(){
+      const a=getMem(),el=document.getElementById("memoryWidgetText");
+      el.textContent=a.length?a[Math.floor(Math.random()*a.length)].text:"nothing saved yet";
+    }
+    document.getElementById("memoryWidgetBtn").onclick=()=>{refreshMemoryWidget();toast("pulled something from memory")};
+
+    function refreshArcWidget(){
+      const a=getWins(),count=Math.min(a.length,7);
+      document.getElementById("arcWidgetValue").textContent=count;
+      document.getElementById("arcMeter").style.width=(count/7*100)+"%";
+      document.getElementById("arcWidgetHint").textContent=count?count+" tiny receipt"+(count===1?"":"s")+" this week-ish.":"log a tiny win and this starts moving.";
+    }
+
+    const careReplies={
+      gentle:"Hot drink, softer clothes, dimmer lights. Pick one—not all three.",
+      silent:"No advice mode. Lower the screen brightness and exist quietly for a bit.",
+      distract:"Find the most suspicious object in the room. It is now the main character."
+    };
+    document.querySelectorAll("#careQuickDial button").forEach(b=>b.onclick=()=>{
+      document.querySelectorAll("#careQuickDial button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      document.getElementById("careExpandable").classList.add("open");
+      document.getElementById("careDynamicResult").textContent=careReplies[b.dataset.carelevel];
+    });
+
+    const oldSaveWin=document.getElementById("desktopSaveWin").onclick;
+    document.getElementById("desktopSaveWin").onclick=()=>{oldSaveWin();refreshArcWidget();toast("tiny receipt kept")};
+    const oldMobileSave=document.getElementById("saveWin").onclick;
+    document.getElementById("saveWin").onclick=()=>{oldMobileSave();refreshArcWidget()};
+    const oldSaveMem=document.getElementById("desktopSaveMemory").onclick;
+    document.getElementById("desktopSaveMemory").onclick=()=>{oldSaveMem();refreshMemoryWidget();toast("memory kept")};
+    const oldMobileMem=document.getElementById("saveMemory").onclick;
+    document.getElementById("saveMemory").onclick=()=>{oldMobileMem();refreshMemoryWidget()};
+
+    renderEnergy();refreshMemoryWidget();refreshArcWidget();
+
+
   </script>
+  <div class="floating-toast" id="toast"></div>
 </body>
 </html>
