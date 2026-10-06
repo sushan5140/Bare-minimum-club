@@ -204,25 +204,44 @@
       .sheet{padding:10px}
       .sheet-card{border-radius:24px;padding:20px}
     }
+
+    /* 2026 soft-tactile visual refresh */
+    :root{--bg:#f3f0ed;--paper:#fffdfb;--ink:#171416;--muted:#786f73;--line:rgba(35,26,30,.09);--accent:#ff6f91;--accent2:#ffd5df;--lilac:#dcd6ff;--butter:#ffe7a7;--blue:#d9ecff;--shadow:0 24px 70px rgba(42,31,36,.10);--radius:32px}
+    html{scroll-behavior:smooth}
+    body{background:radial-gradient(800px 520px at -10% -8%,rgba(255,183,203,.42),transparent 62%),radial-gradient(620px 500px at 104% 8%,rgba(220,214,255,.58),transparent 60%),radial-gradient(560px 420px at 68% 84%,rgba(255,231,167,.30),transparent 62%),var(--bg);letter-spacing:-.012em}
+    .shell{width:min(1180px,calc(100% - 28px));padding:18px 0 110px}
+    .topbar{position:sticky;top:12px;z-index:12;margin-bottom:18px;padding:10px 12px 10px 15px;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:rgba(255,253,251,.68);box-shadow:0 12px 32px rgba(49,37,43,.06);backdrop-filter:blur(20px) saturate(140%)}
+    .brand{display:flex;align-items:center;gap:9px;font-size:.95rem}.brand:before{content:"";width:10px;height:10px;border-radius:50%;background:linear-gradient(145deg,#ff6f91,#9a83ff);box-shadow:0 0 0 5px rgba(255,111,145,.10)}
+    .pill{background:rgba(255,255,255,.62);border-color:rgba(34,24,29,.08);padding:9px 12px}
+    .hero{grid-template-columns:1.16fr .84fr;gap:14px}.panel{border:1px solid rgba(255,255,255,.74);background:rgba(255,253,251,.72);box-shadow:0 20px 60px rgba(45,31,38,.08);backdrop-filter:blur(22px) saturate(135%);border-radius:34px}
+    .hero-copy{min-height:520px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;padding:42px}.hero-copy:after{content:"";position:absolute;width:280px;height:280px;border-radius:42% 58% 63% 37% / 46% 42% 58% 54%;right:-74px;bottom:-86px;background:linear-gradient(145deg,#ff91ad 0%,#ffd9a8 48%,#b9adff 100%);transform:rotate(-10deg)}
+    .eyebrow{display:inline-flex;align-items:center;gap:7px;width:max-content;padding:8px 11px;border-radius:999px;background:#171416;color:#fff;font-size:.72rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase}.eyebrow:before{content:"✦";color:#ffd7e1}
+    h1{font-size:clamp(3.25rem,7.1vw,6.4rem);line-height:.89;letter-spacing:-.078em;max-width:780px;position:relative;z-index:1}.sub{font-size:clamp(1rem,1.6vw,1.12rem);max-width:560px;line-height:1.55;position:relative;z-index:1}
+    .hero-foot{display:flex;gap:9px;flex-wrap:wrap;position:relative;z-index:1}.soft-chip{padding:9px 12px;border-radius:999px;border:1px solid rgba(28,21,24,.08);background:rgba(255,255,255,.66);font-size:.78rem;color:#5f565a;font-weight:730}
+    .vibe-panel{padding:24px}.vibe-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:14px}.vibe-head .prompt{margin:0;font-size:1.4rem;letter-spacing:-.04em}
+    .moods{grid-template-columns:1fr 1fr;gap:10px}.mood{min-height:116px;border:0;border-radius:24px;padding:15px;position:relative;overflow:hidden;background:#fff;box-shadow:inset 0 0 0 1px rgba(30,22,25,.06);transition:.22s ease}.mood:after{content:"↗";position:absolute;right:13px;top:11px;font-weight:900;opacity:.34}
+    .mood:nth-child(1){background:#ffd6de}.mood:nth-child(2){background:#f1ddff}.mood:nth-child(3){background:#e7e3df}.mood:nth-child(4){background:#ffe4af}.mood:nth-child(5){background:#dcecff}.mood:nth-child(6){background:#dfe8d9}.mood:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 16px 30px rgba(50,37,43,.10)}
+    .feature-zone{margin-top:14px;padding:28px}.feature-grid{grid-template-columns:1.25fr .75fr;gap:10px}.feature-card{min-height:280px;border:0;border-radius:28px;padding:26px;box-shadow:none}.feature-card:first-child{background:#171416;color:#fff}.feature-card:first-child p,.feature-card:first-child .kicker{color:rgba(255,255,255,.67)}.feature-card:nth-child(2){background:#ffd9c8}.feature-card h3{font-size:clamp(1.55rem,2.6vw,2.3rem)}
+    .dev-zone,.omp-zone,.lore-zone{margin-top:10px}.dev-card,.omp-card,.lore-card{min-height:190px;border:0;border-radius:28px;padding:26px;box-shadow:none}.dev-card{background:#e5ddff}.omp-card{background:#ddecf6}.lore-card{background:#fff0bd}.dev-card h3,.omp-card h3,.lore-card h3{font-size:clamp(1.5rem,2.5vw,2.2rem)}.dev-arrow{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.58);font-size:1.1rem;flex:0 0 auto}
+    .sheet{background:rgba(23,20,22,.32);backdrop-filter:blur(15px) saturate(120%);padding:12px}.sheet-card{width:min(720px,100%);border:1px solid rgba(255,255,255,.74);border-radius:34px 34px 24px 24px;padding:26px;background:rgba(255,253,251,.92);box-shadow:0 30px 100px rgba(24,17,20,.24);backdrop-filter:blur(24px)}
+    .dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:15;display:flex;gap:5px;padding:7px;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:rgba(26,23,24,.86);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(25,18,21,.18)}.dock a{color:rgba(255,255,255,.72);text-decoration:none;padding:10px 13px;border-radius:16px;font-size:.78rem;font-weight:760}.dock a:hover{background:rgba(255,255,255,.10);color:#fff}
+    @media(max-width:820px){.hero{grid-template-columns:1fr}.hero-copy{min-height:450px}.feature-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.shell{width:min(100% - 16px,1180px);padding-top:8px}.topbar{top:7px;border-radius:18px;margin-bottom:9px}.topbar .pill{display:none}.hero{gap:9px}.hero-copy{min-height:430px;padding:28px 22px}.hero-copy:after{width:220px;height:220px}h1{font-size:clamp(3.2rem,16vw,5rem)}.vibe-panel{padding:17px}.moods{grid-template-columns:1fr 1fr;gap:8px}.mood{min-height:105px;border-radius:21px;padding:13px}.feature-zone{padding:20px}.feature-grid{grid-template-columns:1fr}.feature-card{min-height:220px}.dev-card,.omp-card,.lore-card{padding:21px;min-height:170px}.footer{padding-bottom:70px}.dock{width:calc(100% - 28px);justify-content:space-between}.dock a{flex:1;text-align:center;padding:10px 8px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
   </style>
 </head>
 <body>
   <main class="shell">
     <header class="topbar">
       <div class="brand">bare minimum club</div>
-      <div class="pill tiny">no fixing. just surviving the vibe.</div>
+      <div class="pill tiny">a softer place to be a person</div>
     </header>
 
     <section class="hero" id="home">
-      <div class="panel">
-        <h1>rough day?<br>come waste 3 minutes here.</h1>
-        <p class="sub">
-          No productivity speech. No “be your best self.” Pick what your brain can tolerate and we’ll do the bare minimum together.
-        </p>
-      </div>
+      <div class="panel hero-copy"><div><span class="eyebrow">low battery club</span><h1>today doesn’t need to be impressive.</h1><p class="sub">No streak guilt. No “best version of yourself.” Just tiny distractions, quiet company, and a second brain for the stuff you don’t want to carry alone.</p></div><div class="hero-foot"><span class="soft-chip">zero fixing</span><span class="soft-chip">tiny wins count</span><span class="soft-chip">period context optional</span></div></div>
 
-      <div class="panel">
-        <p class="prompt">today’s vibe?</p>
+      <div class="panel vibe-panel"><div class="vibe-head"><p class="prompt">what can your brain tolerate?</p><span class="tiny">pick one</span></div>
         <div class="moods">
           <button class="mood" data-mode="rage"><span>😡</span>everyone is annoying<small>outsource violence to pixels</small></button>
           <button class="mood" data-mode="soft"><span>🥲</span>emotional for no reason<small>zero judgement zone</small></button>
@@ -254,7 +273,7 @@
       </div>
     </section>
 
-    <section class="feature-zone panel">
+    <section class="feature-zone panel" id="survive">
       <div class="feature-head">
         <div>
           <div class="tiny">NEW · BATCH 1</div>
@@ -408,7 +427,7 @@
       </div>
     </div>
 
-    <section class="lore-zone">
+    <section class="lore-zone" id="remember">
       <button class="lore-card" id="loreLaunch">
         <div>
           <div class="tiny">BATCH 4 · LOREKEEPER</div>
@@ -447,6 +466,8 @@
         <div class="lore-list" id="loreList"></div>
       </div>
     </div>
+
+    <nav class="dock" aria-label="Quick navigation"><a href="#home">home</a><a href="#survive">survive</a><a href="#remember">remember</a></nav>
 
     <footer class="footer">
       <span>v0.1 · distraction first</span>
