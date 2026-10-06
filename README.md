@@ -117,3 +117,24 @@ The current main branch uses a 2026 soft-tactile BMC design direction:
 - purposeful micro-interactions
 
 GitHub Pages deployment is configured through `.github/workflows/pages.yml`.
+
+
+## BMC V2 — mobile application architecture
+
+Development branch: `v2/mobile-app-shell`
+
+V1 remains unchanged on the current root deployment.
+
+V2 is being built separately under `/v2/` as a focused four-tab personal app:
+- **Today** — quick emotional check-in + Bare Minimum + Regret
+- **Care** — low-effort comfort tools, optional monthly context, quiet company
+- **Memory** — Lorekeeper second brain + tiny memories
+- **Me** — Character Development and personal receipts
+
+Design research direction:
+- fast home actions and separated deeper views from modern fitness apps
+- strong bottom navigation and focused tracking flows from cycle/women's-health apps
+- low-friction mood/reflection patterns from journaling and self-care apps
+- no overloaded dashboard and no long scrolling marketing page
+
+V2 is not deployed as the main experience yet.
