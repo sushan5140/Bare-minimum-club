@@ -49,6 +49,18 @@ Current product focus:
 - **Later:** Bro Hold This, Lorekeeper
 - **Dropped from BMC core:** Random Cousin, Parallel Universe Group Chat
 
+### Batch 2: Character Development Tracker
+
+Development branch: `feature/bmc-batch-2-character-development`
+
+Implemented:
+- one-sentence moment logging
+- five lightweight arc types
+- playful "character development detected" responses
+- local-only history using browser storage
+- a tiny season summary based on recurring arc
+- no streaks, points, XP, or productivity pressure
+
 The default `main` branch remains untouched until review.
 
 ## v0.1
