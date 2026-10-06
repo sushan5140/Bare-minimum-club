@@ -236,6 +236,49 @@
       .floating-toast{right:14px;bottom:92px}
     }
 
+
+    /* Curiosity layer: the BMC room */
+    .bmc-room{
+      position:relative;min-height:330px;border-radius:30px;overflow:hidden;background:linear-gradient(180deg,#cfdcf4 0 46%,#f1d7c4 46% 100%);
+      box-shadow:inset 0 0 0 1px rgba(28,22,25,.06)
+    }
+    .room-wall{position:absolute;inset:0 0 46% 0;background:linear-gradient(180deg,#cfdcf4,#dfe7f8)}
+    .room-floor{position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(180deg,#e7c8ae,#dcb998)}
+    .room-window{position:absolute;width:33%;height:38%;left:8%;top:9%;border:7px solid #fff8f2;border-radius:16px;background:linear-gradient(180deg,#9bcff0,#eaf7ff);box-shadow:0 10px 20px rgba(56,58,83,.12);cursor:pointer}
+    .room-window:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:5px;background:#fff8f2;transform:translateX(-50%)}.room-window:before{content:"";position:absolute;top:50%;left:0;right:0;height:5px;background:#fff8f2;transform:translateY(-50%)}
+    .room-bed{position:absolute;left:7%;bottom:13%;width:49%;height:25%;border-radius:18px 26px 18px 18px;background:#fff8f5;box-shadow:0 12px 22px rgba(65,45,48,.12)}
+    .room-bed:before{content:"";position:absolute;left:7%;top:12%;width:34%;height:43%;border-radius:12px;background:#f1e8e6}
+    .room-blanket{position:absolute;left:40%;right:0;top:0;bottom:0;border-radius:22px;background:linear-gradient(145deg,#ffb1c3,#d8c5ff)}
+    .room-table{position:absolute;right:8%;bottom:17%;width:26%;height:7%;border-radius:10px;background:#875f4b;box-shadow:0 10px 0 -3px #684838}
+    .room-lamp{position:absolute;right:16%;bottom:28%;width:52px;height:72px;cursor:pointer}
+    .room-lamp:before{content:"";position:absolute;width:44px;height:34px;border-radius:20px 20px 9px 9px;background:#ffe293;left:4px;top:0;box-shadow:0 0 35px rgba(255,214,118,.55)}
+    .room-lamp:after{content:"";position:absolute;width:6px;height:40px;background:#5b4a43;left:23px;top:29px;border-radius:999px}
+    .room-phone{position:absolute;right:8%;bottom:25%;width:38px;height:58px;border-radius:10px;background:#202022;border:3px solid #3b3739;cursor:pointer;transform:rotate(8deg)}
+    .room-phone:after{content:"";position:absolute;inset:5px;border-radius:6px;background:linear-gradient(145deg,#ffb4c5,#cebfff)}
+    .room-drawer{position:absolute;right:37%;bottom:9%;width:78px;height:54px;border-radius:9px;background:#bc8c6f;cursor:pointer;box-shadow:inset 0 -8px rgba(0,0,0,.07)}
+    .room-drawer:after{content:"";position:absolute;width:12px;height:5px;border-radius:999px;background:#684838;left:33px;top:10px}
+    .room-friend{position:absolute;left:50%;bottom:22%;width:76px;height:84px;border-radius:46% 54% 50% 50%;background:linear-gradient(145deg,#fff2f5,#ff8ead);box-shadow:inset -9px -10px 18px rgba(148,73,111,.12),0 14px 24px rgba(78,47,66,.12);cursor:pointer;transition:.25s ease;z-index:3}
+    .room-friend:before,.room-friend:after{content:"";position:absolute;width:7px;height:9px;border-radius:50%;background:#2a2527;top:30px}.room-friend:before{left:22px}.room-friend:after{right:22px}
+    .room-mouth{position:absolute;width:20px;height:8px;border-bottom:3px solid #2a2527;border-radius:50%;left:28px;top:48px}
+    .room-label{position:absolute;left:12px;top:12px;background:rgba(255,255,255,.72);backdrop-filter:blur(10px);border-radius:999px;padding:7px 10px;font-size:.7rem;font-weight:900;z-index:5}
+    .room-tip{position:absolute;left:12px;bottom:11px;background:rgba(23,22,23,.82);color:#fff;border-radius:14px;padding:8px 10px;font-size:.7rem;font-weight:800;z-index:5}
+    .room-night .room-wall{background:linear-gradient(180deg,#4a4d70,#72769a)}.room-night .room-window{background:linear-gradient(180deg,#202947,#6d79a8)}.room-night .room-lamp:before{box-shadow:0 0 55px rgba(255,214,118,.9)}
+    .room-night{filter:saturate(.92)}
+    .surprise-pop{
+      position:absolute;right:18px;top:18px;width:min(260px,55%);padding:15px;border-radius:18px;background:#fffdf9;box-shadow:0 18px 40px rgba(43,31,37,.18);
+      z-index:8;opacity:0;transform:translateY(-8px) scale(.96);pointer-events:none;transition:.22s ease
+    }
+    .surprise-pop.show{opacity:1;transform:none;pointer-events:auto}.surprise-pop b{display:block;margin-bottom:4px}.surprise-pop span{font-size:.75rem;color:var(--muted);line-height:1.4}
+    .desktop-room-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;margin-bottom:12px}
+    .desktop-room-card{padding:0;overflow:hidden;background:transparent;border:0}.desktop-room-card .bmc-room{min-height:470px;border-radius:30px}
+    .curiosity-stack{display:grid;gap:12px}
+    .curiosity-card{border-radius:28px;padding:22px;min-height:145px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:.2s ease}
+    .curiosity-card:hover{transform:translateY(-3px)}.curiosity-card.mystery{background:#171617;color:#fff}.curiosity-card.mystery p{color:rgba(255,255,255,.6)}.curiosity-card.memory{background:#ffe8a7}.curiosity-card.company{background:#d7e9f2}
+    .curiosity-card .tiny-emoji{font-size:1.5rem}.curiosity-card h3{font-size:1.35rem;margin:8px 0}.curiosity-card p{font-size:.8rem;line-height:1.4;color:var(--muted)}
+    .mobile-room-wrap{margin-top:14px}.mobile-room-wrap .bmc-room{min-height:300px}
+    @media(min-width:980px){.mobile-room-wrap{display:none}.desktop-today-grid,.widget-strip{display:none!important}}
+    @media(max-width:979px){.desktop-room-grid{display:none}.room-friend{left:48%}}
+
   </style>
 </head>
 <body>
@@ -279,6 +322,26 @@
             <p>You don’t need a productive day. You need a survivable one. Start with what’s loudest right now.</p>
           </div>
 
+
+
+          <div class="desktop-room-grid">
+            <section class="desktop-card desktop-room-card">
+              <div class="bmc-room" id="desktopRoom">
+                <div class="room-wall"></div><div class="room-floor"></div><button class="room-window" aria-label="window"></button>
+                <div class="room-bed"><div class="room-blanket"></div></div><div class="room-table"></div>
+                <button class="room-lamp" aria-label="lamp"></button><button class="room-phone" aria-label="phone"></button>
+                <button class="room-drawer" aria-label="mystery drawer"></button>
+                <button class="room-friend" aria-label="companion"><span class="room-mouth"></span></button>
+                <div class="room-label">your little corner</div><div class="room-tip">poke around. things react.</div>
+                <div class="surprise-pop"><b>tiny surprise</b><span></span></div>
+              </div>
+            </section>
+            <div class="curiosity-stack">
+              <button class="curiosity-card mystery" id="dailyMystery"><div><div class="tiny-emoji">?</div><h3>something is waiting.</h3><p>One tiny thing appears here each day. Maybe useful. Maybe stupid.</p></div><b>open today's thing →</b></button>
+              <button class="curiosity-card memory" id="desktopMemoryCuriosity"><div><div class="tiny-emoji">⌁</div><h3>you said something once…</h3><p id="desktopMemoryCuriosityText">tap and I'll pull one old thing back.</p></div><b>remember →</b></button>
+              <button class="curiosity-card company" id="desktopFriendCuriosity"><div><div class="tiny-emoji">◡</div><h3>someone's here.</h3><p>Not to fix anything. Just to make the room less empty.</p></div><b>say hi →</b></button>
+            </div>
+          </div>
 
           <div class="widget-strip">
             <section class="widget">
@@ -437,6 +500,20 @@
         <div class="hero">
           <div><div class="eyebrow" style="color:rgba(255,255,255,.55)">today</div><h1>we're keeping this day small.</h1><p class="muted">You don't need a productive day. You need a survivable one.</p></div>
           <div class="pulse-row"><span class="pill">no streaks</span><span class="pill">no fixing</span><span class="pill">tiny counts</span></div>
+        </div>
+
+
+        <div class="mobile-room-wrap">
+          <div class="section-head"><h2>your little corner</h2><small>poke around</small></div>
+          <div class="bmc-room" id="mobileRoom">
+            <div class="room-wall"></div><div class="room-floor"></div><button class="room-window" aria-label="window"></button>
+            <div class="room-bed"><div class="room-blanket"></div></div><div class="room-table"></div>
+            <button class="room-lamp" aria-label="lamp"></button><button class="room-phone" aria-label="phone"></button>
+            <button class="room-drawer" aria-label="mystery drawer"></button>
+            <button class="room-friend" aria-label="companion"><span class="room-mouth"></span></button>
+            <div class="room-label">today's room</div><div class="room-tip">try tapping things 👀</div>
+            <div class="surprise-pop"><b>tiny surprise</b><span></span></div>
+          </div>
         </div>
 
         <div class="section-head"><h2>how are we arriving?</h2><small>tap, don't explain</small></div>
@@ -683,6 +760,59 @@
     document.getElementById("saveMemory").onclick=()=>{oldMobileMem();refreshMemoryWidget()};
 
     renderEnergy();refreshMemoryWidget();refreshArcWidget();
+
+    const surprises=[
+      "Your side quest: find the softest object in the room and claim it.",
+      "Tiny reminder: unclench your jaw. yes, that one.",
+      "You are allowed to cancel one unnecessary thing today.",
+      "Open your camera and find the most dramatic shadow nearby.",
+      "Drink three sips of water. That's enough to count.",
+      "Today's useless fact: your blanket has been promoted to emotional-support management.",
+      "Do not send the follow-up text. This is your sign."
+    ];
+    function roomSurprise(room,msg){
+      const pop=room.querySelector(".surprise-pop");pop.querySelector("span").textContent=msg;pop.classList.add("show");
+      clearTimeout(pop.__timer);pop.__timer=setTimeout(()=>pop.classList.remove("show"),4200);
+    }
+    function setupRoom(room){
+      if(!room)return;
+      room.querySelector(".room-lamp").onclick=()=>{room.classList.toggle("room-night");roomSurprise(room,room.classList.contains("room-night")?"lights low. expectations lower.":"daylight restored. unfortunately.")};
+      room.querySelector(".room-window").onclick=()=>roomSurprise(room,"Outside world checked. You may safely return to ignoring it.");
+      room.querySelector(".room-phone").onclick=()=>openSheet("regretSheet");
+      room.querySelector(".room-friend").onclick=e=>{e.currentTarget.style.transform="translateY(-8px) rotate(-4deg)";setTimeout(()=>e.currentTarget.style.transform="",350);roomSurprise(room,"I'm here. You don't have to perform conversation.");};
+      room.querySelector(".room-drawer").onclick=()=>{const key="bmc_v2_drawer_"+new Date().toISOString().slice(0,10);let v=localStorage.getItem(key);if(!v){v=surprises[Math.floor(Math.random()*surprises.length)];localStorage.setItem(key,v)}roomSurprise(room,v);};
+    }
+    setupRoom(document.getElementById("mobileRoom"));setupRoom(document.getElementById("desktopRoom"));
+
+    const dailyThings=[
+      ["tiny dare","send absolutely nothing for the next 10 minutes."],
+      ["plot twist","do the task badly on purpose. completion > elegance."],
+      ["micro reward","pick a snack/drink before you earn it. rebellion."],
+      ["weird mission","find one object you forgot you owned."],
+      ["permission slip","you may leave one message unanswered until tomorrow."]
+    ];
+    document.getElementById("dailyMystery").onclick=()=>{
+      const d=dailyThings[new Date().getDate()%dailyThings.length];
+      document.getElementById("dailyMystery").innerHTML="<div><div class='tiny-emoji'>✦</div><h3>"+d[0]+"</h3><p>"+d[1]+"</p></div><b>come back tomorrow →</b>";
+      toast("today's thing opened");
+    };
+    document.getElementById("desktopMemoryCuriosity").onclick=()=>{
+      const a=getMem();const txt=a.length?a[Math.floor(Math.random()*a.length)].text:"nothing saved yet — leave one thing in Memory first.";
+      document.getElementById("desktopMemoryCuriosityText").textContent=txt;
+    };
+    document.getElementById("desktopFriendCuriosity").onclick=()=>openSheet("companySheet");
+
+    function reactFriend(mode){
+      [document.getElementById("mobileRoom"),document.getElementById("desktopRoom")].forEach(room=>{
+        if(!room)return;const f=room.querySelector(".room-friend"),mouth=room.querySelector(".room-mouth");
+        const rotations={rage:"8deg",soft:"-5deg",blank:"2deg",panic:"-9deg",meh:"0deg",space:"5deg"};
+        f.style.transform="rotate("+rotations[mode]+")";
+        mouth.style.borderBottomWidth=mode==="rage"?"0":"3px";
+        mouth.style.borderTop=mode==="rage"?"3px solid #2a2527":"0";
+      });
+    }
+    document.querySelectorAll(".mood,.desktop-mood").forEach(b=>b.addEventListener("click",()=>reactFriend(b.dataset.mode)));
+
 
 
   </script>
