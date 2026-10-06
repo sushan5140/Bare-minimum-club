@@ -279,6 +279,82 @@
     @media(min-width:980px){.mobile-room-wrap{display:none}.desktop-today-grid,.widget-strip{display:none!important}}
     @media(max-width:979px){.desktop-room-grid{display:none}.room-friend{left:48%}}
 
+
+    /* Senior interaction pass */
+    .mobile-room-wrap,.desktop-room-grid{display:none!important}
+    :root{--ease:cubic-bezier(.22,.8,.22,1);--ease-soft:cubic-bezier(.16,1,.3,1)}
+    body{background:linear-gradient(140deg,#d8d2cc 0%,#cec7c1 100%)}
+    .phone{background:
+      radial-gradient(900px 500px at 15% -10%,rgba(255,255,255,.7),transparent 60%),
+      linear-gradient(180deg,#f5f1ec 0%,#efeae4 100%)}
+    .screen,.desktop-screen{transition:opacity .38s var(--ease),transform .38s var(--ease),filter .38s var(--ease)}
+    .screen.active,.desktop-screen.active{animation:refinedIn .5s var(--ease-soft)}
+    @keyframes refinedIn{from{opacity:0;transform:translateY(14px) scale(.995);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+    .tile,.mood,.desktop-card,.care-action,.widget,.curiosity-card{
+      transition:transform .28s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease),border-color .28s var(--ease)
+    }
+    .desktop-card,.card,.tile,.widget{
+      box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 12px 34px rgba(43,34,38,.06)
+    }
+    .desktop-card:hover,.tile:hover,.widget:hover{
+      transform:translateY(-3px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 22px 50px rgba(43,34,38,.10)
+    }
+    .interactive-surface{position:relative;overflow:hidden;isolation:isolate}
+    .interactive-surface:before{
+      content:"";position:absolute;inset:-1px;pointer-events:none;z-index:-1;
+      background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.55),transparent 55%);
+      opacity:0;transition:opacity .25s ease
+    }
+    .interactive-surface:hover:before{opacity:1}
+    .state-panel{
+      margin:12px 0 18px;border-radius:30px;padding:22px;background:#171617;color:#fff;display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(260px,.9fr);gap:20px;align-items:center;position:relative;overflow:hidden
+    }
+    .state-panel:after{
+      content:"";position:absolute;right:-90px;top:-100px;width:320px;height:320px;border-radius:50%;
+      background:radial-gradient(circle,#cabaff 0 16%,#f2b5c4 17% 34%,#ffdf9e 35% 50%,transparent 51%);
+      opacity:.23;filter:blur(2px)
+    }
+    .state-copy{position:relative;z-index:1}.state-copy h2{font-size:clamp(2rem,3.5vw,3.6rem);line-height:.96;letter-spacing:-.055em;margin:8px 0}
+    .state-copy p{color:rgba(255,255,255,.58);max-width:520px}
+    .state-controls{position:relative;z-index:1;display:grid;gap:12px}
+    .energy-track{height:12px;border-radius:999px;background:rgba(255,255,255,.12);position:relative;overflow:hidden}
+    .energy-track span{display:block;height:100%;width:40%;border-radius:999px;background:linear-gradient(90deg,#ff9db4,#cabaff);transition:width .42s var(--ease-soft)}
+    .energy-labels{display:flex;justify-content:space-between;color:rgba(255,255,255,.45);font-size:.68rem;margin-top:6px}
+    .state-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .state-actions button{
+      border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:10px 12px;font-weight:820;cursor:pointer;
+      transition:.22s var(--ease)
+    }
+    .state-actions button.active{background:#fff;color:#171617;transform:translateY(-1px)}
+    .focus-card{
+      border-radius:28px;padding:20px;background:linear-gradient(145deg,#f8f4ef,#fff);border:1px solid var(--line);position:relative;overflow:hidden
+    }
+    .focus-line{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .focus-status{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:850;color:var(--muted)}
+    .focus-status:before{content:"";width:8px;height:8px;border-radius:50%;background:#77b58a;box-shadow:0 0 0 5px rgba(119,181,138,.12)}
+    .focus-body{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s var(--ease-soft),opacity .3s ease,padding .3s ease}
+    .focus-card.open .focus-body{max-height:240px;opacity:1;padding-top:16px}
+    .focus-card.open{box-shadow:0 22px 50px rgba(43,34,38,.10)}
+    .focus-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .focus-actions button{border:0;border-radius:999px;padding:10px 12px;background:#eee9e4;font-weight:800;cursor:pointer}
+    .focus-actions button:hover{background:#171617;color:#fff}
+    .desktop-nav button,.nav button{transition:background .24s var(--ease),color .24s var(--ease),transform .24s var(--ease)}
+    .desktop-nav button:hover{transform:translateX(3px)}
+    .sheet{transition:background .3s ease,backdrop-filter .3s ease}
+    .sheet.active .sheet-card{animation:sheetIn .46s var(--ease-soft)}
+    @keyframes sheetIn{from{opacity:0;transform:translateY(28px) scale(.985)}to{opacity:1;transform:none}}
+    .desktop-memory-types button,.desktop-care-chips button,.chip{transition:.2s var(--ease)}
+    .desktop-memory-types button:hover,.desktop-care-chips button:hover,.chip:hover{transform:translateY(-1px)}
+    .breath-orb{animation:premiumPulse 5s var(--ease-soft) infinite;filter:saturate(.85)}
+    @keyframes premiumPulse{0%,100%{transform:scale(.94);box-shadow:0 8px 24px rgba(90,73,120,.12)}50%{transform:scale(1.04);box-shadow:0 18px 42px rgba(90,73,120,.2)}}
+    .floating-toast{border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(18px);background:rgba(23,22,23,.92)}
+    @media(max-width:979px){
+      .state-panel{grid-template-columns:1fr;padding:20px}.state-copy h2{font-size:2.4rem}
+      .desktop-card:hover,.tile:hover,.widget:hover{transform:none}
+    }
+    @media(prefers-reduced-motion:reduce){.breath-orb{animation:none}.screen.active,.desktop-screen.active,.sheet.active .sheet-card{animation:none}}
+
   </style>
 </head>
 <body>
@@ -364,6 +440,23 @@
               <div><div class="tiny-meter"><span id="arcMeter"></span></div><div class="hint" id="arcWidgetHint" style="margin-top:8px">log a tiny win and this starts moving.</div></div>
             </section>
           </div>
+
+
+          <section class="state-panel interactive-surface" id="desktopStatePanel">
+            <div class="state-copy">
+              <div class="eyebrow" style="color:rgba(255,255,255,.48)">current state</div>
+              <h2 id="desktopStateTitle">low energy, low expectations.</h2>
+              <p id="desktopStateCopy">BMC will keep actions small until you say otherwise.</p>
+            </div>
+            <div class="state-controls">
+              <div><div class="energy-track"><span id="desktopEnergyFill"></span></div><div class="energy-labels"><span>empty</span><span>okay-ish</span><span>functional</span></div></div>
+              <div class="state-actions" id="desktopStateActions"><button data-state="soft" class="active">gentle</button><button data-state="quiet">quiet</button><button data-state="distract">distract</button></div>
+            </div>
+          </section>
+          <section class="focus-card interactive-surface" id="desktopFocusCard">
+            <div class="focus-line"><div><div class="eyebrow">focus</div><h3 style="margin-top:5px">one thing at a time.</h3></div><button class="desktop-secondary" id="desktopFocusToggle">expand</button></div>
+            <div class="focus-body"><p class="muted" id="desktopFocusCopy">Pick the smallest next move. BMC will keep everything else quiet.</p><div class="focus-actions" style="margin-top:12px"><button id="desktopFocusMinimum">bare minimum</button><button id="desktopFocusCompany">quiet company</button><button id="desktopFocusMemory">what helped before?</button></div></div>
+          </section>
 
           <div class="desktop-today-grid">
             <section class="desktop-card desktop-checkin">
@@ -515,6 +608,23 @@
             <div class="surprise-pop"><b>tiny surprise</b><span></span></div>
           </div>
         </div>
+
+
+        <section class="state-panel">
+          <div class="state-copy">
+            <div class="eyebrow" style="color:rgba(255,255,255,.48)">current state</div>
+            <h2 id="mobileStateTitle">low energy, low expectations.</h2>
+            <p id="mobileStateCopy">BMC will keep actions small until you say otherwise.</p>
+          </div>
+          <div class="state-controls">
+            <div><div class="energy-track"><span id="mobileEnergyFill"></span></div><div class="energy-labels"><span>empty</span><span>okay-ish</span><span>functional</span></div></div>
+            <div class="state-actions" id="mobileStateActions"><button data-state="soft" class="active">gentle</button><button data-state="quiet">quiet</button><button data-state="distract">distract</button></div>
+          </div>
+        </section>
+        <section class="focus-card" id="mobileFocusCard">
+          <div class="focus-line"><div><div class="eyebrow">right now</div><h3 style="margin-top:5px">one thing at a time.</h3></div><button class="primary soft" id="mobileFocusToggle">open</button></div>
+          <div class="focus-body"><p class="muted" id="mobileFocusCopy">Pick the smallest next move. BMC will stay out of the way.</p><div class="focus-actions" style="margin-top:12px"><button id="mobileFocusMinimum">bare minimum</button><button id="mobileFocusCompany">quiet company</button><button id="mobileFocusMemory">what helped before?</button></div></div>
+        </section>
 
         <div class="section-head"><h2>how are we arriving?</h2><small>tap, don't explain</small></div>
         <div class="mood-row">
@@ -760,6 +870,48 @@
     document.getElementById("saveMemory").onclick=()=>{oldMobileMem();refreshMemoryWidget()};
 
     renderEnergy();refreshMemoryWidget();refreshArcWidget();
+
+    const stateCopy={
+      soft:["low energy, low expectations.","BMC will keep actions small until you say otherwise."],
+      quiet:["less noise, fewer decisions.","No prompts unless you ask. The interface stays deliberately quiet."],
+      distract:["okay. get me out of my head.","We'll favor short, low-stakes distractions over reflection."]
+    };
+    function setState(mode){
+      const d=stateCopy[mode]||stateCopy.soft;
+      ["mobile","desktop"].forEach(prefix=>{
+        const t=document.getElementById(prefix+"StateTitle"),c=document.getElementById(prefix+"StateCopy");
+        if(t)t.textContent=d[0];if(c)c.textContent=d[1];
+        document.querySelectorAll("#"+prefix+"StateActions button").forEach(b=>b.classList.toggle("active",b.dataset.state===mode));
+      });
+      localStorage.setItem("bmc_v2_state",mode);
+    }
+    document.querySelectorAll("[data-state]").forEach(b=>b.addEventListener("click",()=>setState(b.dataset.state)));
+    setState(localStorage.getItem("bmc_v2_state")||"soft");
+
+    function syncEnergyVisual(){
+      const pct=Math.max(20,energy*20)+"%";
+      const m=document.getElementById("mobileEnergyFill"),d=document.getElementById("desktopEnergyFill");
+      if(m)m.style.width=pct;if(d)d.style.width=pct;
+    }
+    syncEnergyVisual();
+    document.querySelectorAll("#energyDots .energy-dot").forEach(d=>d.addEventListener("click",syncEnergyVisual));
+
+    [["mobile","mobileFocusCard","mobileFocusToggle"],["desktop","desktopFocusCard","desktopFocusToggle"]].forEach(([p,cardId,btnId])=>{
+      const card=document.getElementById(cardId),btn=document.getElementById(btnId);
+      if(btn)btn.onclick=()=>{card.classList.toggle("open");btn.textContent=card.classList.contains("open")?"close":"expand"};
+    });
+    const focusMap=[
+      ["mobileFocusMinimum","minimumSheet"],["desktopFocusMinimum","minimumSheet"],
+      ["mobileFocusCompany","companySheet"],["desktopFocusCompany","companySheet"]
+    ];
+    focusMap.forEach(([id,sheet])=>{const el=document.getElementById(id);if(el)el.onclick=()=>openSheet(sheet)});
+    [["mobileFocusMemory","memory"],["desktopFocusMemory","memory"]].forEach(([id,target])=>{const el=document.getElementById(id);if(el)el.onclick=()=>window.innerWidth>=980?dGo(target):go(target)});
+
+    document.querySelectorAll(".desktop-card,.widget,.focus-card,.state-panel").forEach(el=>{
+      el.classList.add("interactive-surface");
+      el.addEventListener("pointermove",e=>{const r=el.getBoundingClientRect();el.style.setProperty("--mx",((e.clientX-r.left)/r.width*100)+"%");el.style.setProperty("--my",((e.clientY-r.top)/r.height*100)+"%")});
+    });
+
 
     const surprises=[
       "Your side quest: find the softest object in the room and claim it.",
