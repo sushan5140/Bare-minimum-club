@@ -104,3 +104,16 @@ Current prototype is intentionally lightweight and static:
 ## Principle
 
 > no fixing. just surviving the vibe.
+
+
+## Design system
+
+The current main branch uses a 2026 soft-tactile BMC design direction:
+- asymmetric bento hierarchy
+- restrained glass surfaces
+- low-stimulus pastel color blocks
+- bottom-sheet interactions
+- thumb-friendly floating navigation
+- purposeful micro-interactions
+
+GitHub Pages deployment is configured through `.github/workflows/pages.yml`.
