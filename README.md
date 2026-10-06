@@ -46,8 +46,8 @@ Implemented without deploying:
 
 Current product focus:
 - **Core:** Bare Minimum Button, Regret Button, Character Development Tracker, One More Person × You Had To Be There
-- **Later:** Bro Hold This, Lorekeeper
-- **Dropped from BMC core:** Random Cousin, Parallel Universe Group Chat
+- **Later:** Lorekeeper
+- **Dropped from BMC:** Random Cousin, Parallel Universe Group Chat, Bro Hold This
 
 ### Batch 2: Character Development Tracker
 
